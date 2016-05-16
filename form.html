@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<div id="header">
+	<head>
+		<link rel="stylesheet" type="text/css" href="form.css">
+		<script src="form.js"></script> 
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    	<script src="http://maps.googleapis.com/maps/api/js"></script>
+    	<h1>Newark Thrives Program Locator</h1>
+
+    	<script>
+			function initialize() {
+  				var mapProp = {
+    				center:new google.maps.LatLng(51.508742,-0.120850),
+   			 		zoom:5,
+    				mapTypeId:google.maps.MapTypeId.ROADMAP
+  					};
+  				var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+					}
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+
+	</head>
+</div>
+	
+<body>
+	<div id="googleMap"></div>
+	<div id="filters">
+	
+	    	<h2>Filter Controls</h2>
+			<form>
+			  Program / Organization Search: 
+			  <input type="text" name="firstname">
+			  <input type="submit">
+			</form>
+	
+		<h2>Grades Served</h2>
+			<input type="checkbox" name="grades" value="highschool"/>High School (9-12) <br>
+			<input type="checkbox" name="grades" value="middleschool"/>Middle School (6-8)<br>
+			<input type="checkbox" name="grades" value="elementary"/>Elementary (K-5) <br>
+			<input type="checkbox" name="grades" value="kindergarten"/>Kindergarten <br>
+			<input type="checkbox" name="grades" value="prek"/>Pre-K <br>
+
+	
+			<h2>Day's Offered</h2>
+				<input type="checkbox" class="checkbox" value="monday"/>M <br>
+				<input type="checkbox" class="checkbox" value="tuesday"/>T <br>
+				<input type="checkbox" class="checkbox" value="wednesday"/>W <br>
+				<input type="checkbox" class="checkbox" value="thursday"/>Th <br>
+				<input type="checkbox" class="checkbox" value="friday"/>F <br>
+				<input type="checkbox" class="checkbox" value="saturday"/>Sat <br>
+				<input type="checkbox" class="checkbox" value="sunday"/>Sun <br>
+	  	
+			<h2>Times Offered</h2>		
+			<form action="">
+				  <select name="times">
+				    <option value="morning">Mornings</option>
+				    <option value="afternoon">Afternoons</option>
+				    <option value="allDay">All Day</option>
+				  </select>
+		
+	    	<h2>Enrollment Type</h2>
+			<form action="">
+					  <select name="enrollment">
+					    <option value="Full Year">Full Year</option>
+					    <option value="Summer">Summer</option>
+					    <option value="Drop-in">Drop-in</option>
+					    <option value="3 Session">3 Session</option>
+					    <option value="Semester">Semester</option>
+					    <option value="Varies">Varies</option>
+					    <option value="by appointment">by appointment</option>
+					    <option value="Per concertt">Per concert</option>
+					  </select>
+			
+	    	<h2>Wards</h2>
+				<input type="checkbox" class="checkbox" value="north"/>North Ward<br>
+				<input type="checkbox" class="checkbox" value="south"/>South Ward<br>
+				<input type="checkbox" class="checkbox" value="east"/>East Ward<br>
+				<input type="checkbox" class="checkbox" value="west"/>West Ward<br>
+	</div>
+
+
+<!-- <h2>Program Categories</h2>
+	<div class="dropdown">
+		<button onclick="dropdwn()" class="dropbtn">Academics</button>
+		  <div id="myDropdown" class="dropdown-content">
+		    <a href="">A</a>
+		    <a href="">B</a>
+		    <a href="">C</a>
+		  </div>
+
+		  <button onclick="dropdwn()" class="dropbtn">Arts and Culture</button>
+		  <div id="myDropdown" class="dropdown-content">
+		    <a href="">D</a>
+		    <a href="">E</a>
+		    <a href="">F</a>
+		  </div>
+
+		  <button onclick="dropdwn()" class="dropbtn">Environment</button>
+		  <div id="myDropdown" class="dropdown-content">
+		    <a href="">G</a>
+		    <a href="">H</a>
+		    <a href="">I</a>
+		  </div>
+
+		  <button onclick="dropdwn()" class="dropbtn">Spots and Recreation</button>
+		  <div id="myDropdown" class="dropdown-content">
+		    <a href="">J</a>
+		    <a href="">K</a>
+		    <a href="">L</a>
+		  </div>
+	</div> -->
+
+	<div id="footer">
+		<p>Newark Thrives</p>
+	</div>
+
+</body>
+</html>
