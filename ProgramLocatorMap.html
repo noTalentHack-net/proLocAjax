@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport"></meta>
+  <title>dataOST - Google Fusion Tables</title>
+  <link rel="stylesheet" href="SlickNav-master/dist/slicknav.min.css" />
+  <link rel="stylesheet" type="text/css" href="ProgramLocatorMap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+  <script src="SlickNav-master/dist/jquery.slicknav.min.js"></script>
+  <script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+  function initialize() {
+    google.maps.visualRefresh = true;
+    var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
+      (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
+    if (isMobile) {
+      var viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
+    }
+    //var mapDiv = document.getElementById('mapCanvas');
+    //mapDiv.style.width = isMobile ? '100%' : '500px';
+    //mapDiv.style.height = isMobile ? '100%' : '300px';
+
+    var tableId = "1Ah486A9wQKYyWq9V_6eFFE2fTSxYt9tv8ipKpFZf";
+    var locationColumn = "col0";
+
+    var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+      center: new google.maps.LatLng(40.735657, -74.172367),
+      zoom: 13,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var wardsLayer = new google.maps.FusionTablesLayer({
+      query: {
+        select: "'geometry'",
+        from: '1WgAEYo358LxwjtmHkhRxq6AconsfE76nTf7aAS-Z'
+      },
+      map: map,
+      suppressInfoWindows: true,
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
+    });
+     // google.maps.event.addListener(wardsLayer, 'click', function(e) {
+     //   windowControl(e, infoWindow, map);
+     // });
+
+    var pointsLayer = new google.maps.FusionTablesLayer({
+      map: map,
+      heatmap: { enabled: false },
+      query: {
+        select: locationColumn,
+        from: tableId,
+        where: ""
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
+    });
+
+    /*
+    google.maps.event.addDomListener(document.getElementById('academic'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('arts_and_culture'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('college_readiness'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('community_service_civic_engagement'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('early_education'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('environment'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('faith_based_spirituality'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('health'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('jobs_career_exploration'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('sports_and_recreation'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('technology_and_media_literacy'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    google.maps.event.addDomListener(document.getElementById('youth_development'),'click', function() {
+          filterMap(pointsLayer, tableId, map);
+    });
+    */
+
+    $('#recenter_button').on('click',function(){
+        map.setCenter(new google.maps.LatLng(40.735657, -74.172367));
+        map.setZoom(13);
+    });
+
+    if (isMobile) {
+      var legend = document.getElementById('googft-legend');
+      var legendOpenButton = document.getElementById('googft-legend-open');
+      var legendCloseButton = document.getElementById('googft-legend-close');
+      legend.style.display = 'none';
+      legendOpenButton.style.display = 'block';
+      legendCloseButton.style.display = 'block';
+      legendOpenButton.onclick = function() {
+        legend.style.display = 'block';
+        legendOpenButton.style.display = 'none';
+      }
+      legendCloseButton.onclick = function() {
+        legend.style.display = 'none';
+        legendOpenButton.style.display = 'block';
+      }
+    }
+  }
+
+    // Filter the map based on checkbox selection.
+  function filterMap(pointsLayer, tableId, map) {
+    var where = generateWhere();
+
+    if (where) {
+      if (!pointsLayer.getMap()) {
+        pointsLayer.setMap(map);
+      }
+      pointsLayer.setOptions({
+        query: {
+          select: "col0",
+          from: tableId,
+          where: where
+        }
+      });
+    } else {
+      pointsLayer.setMap(null);
+    }
+  }
+
+  // Generate a where clause from the checkboxes. If no boxes
+  // are checked, return an empty string.
+  function generateWhere() {
+    var filter = [];
+    var programs = document.getElementsByName('program');
+    for (var i = 0, program; program = programs[i]; i++) {
+      if (program.checked) {
+        var programName = program.value.replace(/'/g, '\\\'');
+        filter.push("'" + programName + "'");
+      }
+    }
+    var where = '';
+    if (filter.length) {
+      where = "'Store Name' IN (" + filter.join(',') + ')';
+    }
+    return where;
+  }
+
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<script type="text/javascript">
+
+$('#transit_button').on('click', function() {
+  alert("Transit Directions Here!");
+});
+
+</script>
+
+<div id="content">
+  <div id="sidebar">
+    <p>Newark Thrives!</p>
+    <ul>
+      <li>Academic</li>
+      <li>Arts &amp; Culture</li>
+      <li>College Readiness</li>
+      <li>Community Service &amp; Civic Engagement</li>
+      <li>Early Education</li>
+      <li>Environment</li>
+      <li>Faith-Based Spirituality</li>
+      <li>Health</li>
+      <li>Jobs/Career Exploration</li>
+      <li>Sports &amp; Recreation</li>
+      <li>Technology &amp; Media Literacy</li>
+      <li>Youth Development</li>
+    </ul>
+    <h4 style="color: white;">Other filter controls below here</h4>
+  </div>
+
+  <div id="mapCanvas"></div>
+
+  <!--
+  <div id="layer_selector">
+    <ul id="filter_programs"> 
+        <li><input type="checkbox" id="academic" checked="checked" name="program" value="Academic"/>Academic</li>
+        <li><input type="checkbox" id="arts_and_culture" checked="checked" name="program" value="Arts and Culture"/>Arts &amp; Culture</li>
+        <li><input type="checkbox" id="college_readiness" checked="checked" name="program" value="College Readiness"/>College Readiness</li>
+        <li><input type="checkbox" id="community_service_civic_engagement" checked="checked" name="program" value="Community Service/Civic Engagement"/>Community Service &amp; Civic Engagement</li>
+        <li><input type="checkbox" id="early_education" checked="checked" name="program" value="Early Education"/>Early Education</li>
+        <li><input type="checkbox" id="environment" checked="checked" name="program" value="Environment"/>Environment</li>
+        <li><input type="checkbox" id="faith_based_spirituality" checked="checked" name="program" value="Faith-Based/ Spirituality"/>Faith-Based Spirituality</li>
+        <li><input type="checkbox" id="health" checked="checked" name="program" value="Health"/>Health</li>
+        <li><input type="checkbox" id="jobs_career_exploration" checked="checked" name="program" value="Jobs/ Career Exploration"/>Jobs, Career &amp; Exploration</li>
+        <li><input type="checkbox" id="sports_and_recreation" checked="checked" name="program" value="Sports and Recreation"/>Sports &amp; Recreation</li>
+        <li><input type="checkbox" id="technology_and_media_literacy" checked="checked" name="program" value="Technology and Media Literacy"/>Technology &amp; Media Literacy</li>
+        <li><input type="checkbox" id="youth_development" checked="checked" name="program" value="Youth Development"/>Youth Development</li>
+        <li><button class="deselect">Deselect All</button></li>
+    </ul>
+  </div>
+  -->
+
+  <div id="recenter_div">
+    <button id="recenter_button">Recenter Map</button>
+  </div>
+</div>
+
+</body>
+
+</html>
