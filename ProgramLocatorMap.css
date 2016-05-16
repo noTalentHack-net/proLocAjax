@@ -34,6 +34,9 @@ html, body {
     font-family: "Century Gothic", "Palatno Linotype", "Verdana";
     text-align: center;
 }
+#sidebar h5 {
+    color: #ffffff;
+}
 /*
 #layer_selector {
     position: absolute;
