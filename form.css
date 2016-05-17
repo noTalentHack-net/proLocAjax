@@ -11,6 +11,7 @@ body {
     background-color: lightgrey;
     width: 210px;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .dropbtn {
@@ -48,8 +49,8 @@ body {
 }
 
 #googleMap {
-    width:1147px;
-    height:766px;
+    width:83%;
+    height:816px;
     float: right;
     flex-shrink: 
 }
