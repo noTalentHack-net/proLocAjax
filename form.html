@@ -4,23 +4,11 @@
 <div id="header">
 	<head>
 		<link rel="stylesheet" type="text/css" href="form.css">
-		<script src="form.js"></script> 
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     	<script src="http://maps.googleapis.com/maps/api/js"></script>
+    	<script src="form.js"></script> 
     	<h1>Newark Thrives Program Locator</h1>
-
-    	<script>
-			function initialize() {
-  				var mapProp = {
-    				center:new google.maps.LatLng(40.735657,-74.172367),
-   			 		zoom:13,
-    				mapTypeId:google.maps.MapTypeId.ROADMAP
-  					};
-  				var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-					}
-			google.maps.event.addDomListener(window, 'load', initialize);
-		</script>
 
 	</head>
 </div>
@@ -90,27 +78,99 @@
 				<hr>
 		</div>
 	
-
-
-<h2>Program Categories</h2>
-	<h2>Animated Accordion</h2>
-
-			<button class="accordion">Section 1</button>
+		<h2>Program Categories</h2>
+				<button class="accordion">Academic</button>
 				<div class="panel">
-			  		<p>B</p>
+				  <input type="checkbox" class="academic" value="Academic Clubs"/>Academic Clubs<br>
+				  <input type="checkbox" class="academic" value="Academic Enrichment"/>Academic Enrichment<br>
+				  <input type="checkbox" class="academic" value="College-Credit"/>College-Credit<br>
+				  <input type="checkbox" class="academic" value="Credit Recovery"/>Credit Recovery<br>
+				  <input type="checkbox" class="academic" value="Dropout Prevention"/>Dropout Prevention<br>
+				  <input type="checkbox" class="academic" value="English Language Arts"/>English Language Arts<br>
+				  <input type="checkbox" class="academic" value="ESOL Instruction"/>ESOL Instruction<br>
+				  <input type="checkbox" class="academic" value="History/ Social Studies"/>History/ Social Studies<br>
+				  <input type="checkbox" class="academic" value="Homework Help"/>Homework Help<br>
+				  <input type="checkbox" class="academic" value="Math"/>Math<br>
+				  <input type="checkbox" class="academic" value="Reading/ Literature"/>Reading/ Literature<br>
+				  <input type="checkbox" class="academic" value="Re-Engagement"/>Re-Engagement<br>
+				  <input type="checkbox" class="academic" value="STEM"/>STEM<br>
+				  <input type="checkbox" class="academic" value="Study Skills"/>Study Skills<br>
+				  <input type="checkbox" class="academic" value="Test Prep: Acccuplacer"/>Test Prep: Acccuplacer<br>
+				  <input type="checkbox" class="academic" value="Test Prep: GED"/>Test Prep: GED<br>
+				  <input type="checkbox" class="academic" value="Test Prep: ICEE (Exam School Test)"/>Test Prep: ICEE (Exam School Test)<br>
+				  <input type="checkbox" class="academic" value="Test Prep: MCAS"/>Test Prep: MCAS<br>
+				  <input type="checkbox" class="academic" value="Test Prep: SAT"/>Test Prep: SAT<br>
+				  <input type="checkbox" class="academic" value="Tutoring"/>Tutoring<br>
+				  <input type="checkbox" class="academic" value="Unspecific Academic"/>Unspecific Academic<br>
 				</div>
 
-			<button class="accordion">Section 2</button>
+				<button class="accordion">Arts and Culture</button>
 				<div class="panel">
-			  		<p>C</p>
+				  <input type="checkbox" class="Arts and Culture" value="Architecture/ Planning"/>Architecture/ Planning<br>
 				</div>
 
-			<button class="accordion">Section 3</button>
-				<div id="foo" class="panel">
-			  		<p>A</p>
+				<button class="accordion">Environment</button>
+				<div class="panel">
+				  <input type="checkbox" class="Environment" value="Agriculture/ Farming"/>Agriculture/ Farming<br>
+				</div>
+
+				<button class="accordion">Sports and Recreation</button>
+				<div class="panel">
+				  <input type="checkbox" class="Sports and Recreation" value="Aerobics"/>Aerobics<br>
+				</div>
+
+				<button class="accordion">Technology/ Media Literacy</button>
+				<div class="panel">
+				  <input type="checkbox" class="Technology/ Media Literacy" value="Computer Literacy"/>Computer Literacy<br>
+				</div>
+
+				<button class="accordion">Early Education</button>
+				<div class="panel">
+				  <input type="checkbox" class="Early Education" value="Early Literacy and Reading"/>Early Literacy and Reading<br>
+				</div>
+
+				<button class="accordion">Jobs/Career Exploration</button>
+				<div class="panel">
+				  <input type="checkbox" class="Jobs/Career Exploration" value="Career Development"/>Career Development<br>
+				</div>
+
+				<button class="accordion">Community Service/ Civic Engagement</button>
+				<div class="panel">
+				  <input type="checkbox" class="Community Service/ Civic Engagement" value="Civic engagement"/>Civic engagement<br>
+				</div>
+
+				<button class="accordion">Youth Development</button>
+				<div class="panel">
+				  <input type="checkbox" class="Youth Development" value="Alumni Services"/>Alumni Services<br>
+				</div>
+
+				<button class="accordion">College Readiness</button>
+				<div class="panel">
+				  <input type="checkbox" class="College Readiness" value="College Counseling"/>College Counseling<br>
+				</div>
+
+				<button class="accordion">Health</button>
+				<div class="panel">
+				  <input type="checkbox" class="Health" value="Asthma"/>Asthma<br>
+				</div>
+
+				<button class="accordion">Faith-Based/ Spirituality</button>
+				<div class="panel">
+				  <input type="checkbox" class="Faith-Based/ Spirituality" value="Faith-Based/ Spirituality"/>Faith-Based/ Spirituality<br>
 				</div>
 
 
+		<script>
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+
+			for (i = 0; i < acc.length; i++) {
+			    acc[i].onclick = function(){
+			        this.classList.toggle("active");
+			        this.nextElementSibling.classList.toggle("show");
+			  }
+			}
+		</script>
 	</div>
 
 	<div id="footer">
