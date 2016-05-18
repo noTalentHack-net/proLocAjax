@@ -16,6 +16,7 @@
 <script type="text/javascript">
   function initialize() {
     // $('#mapDirections').hide();
+    $('#directionsPanel').hide();
     google.maps.visualRefresh = true;
     var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
       (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
@@ -31,6 +32,7 @@
     var locationColumn = "col0";
 
     var infoWindow = new google.maps.InfoWindow();
+    var directionsMapActive = false;
 
     var map = new google.maps.Map(document.getElementById('mapCanvas'), {
       center: new google.maps.LatLng(40.735657, -74.172367),
@@ -133,11 +135,6 @@
     });
     */
 
-    $('#recenter_button').on('click',function(){
-        map.setCenter(new google.maps.LatLng(40.735657, -74.172367));
-        map.setZoom(13);
-    });
-
   google.maps.event.addDomListener(document.getElementById('get-transit'),'click', function() {
       initMap();
     });
@@ -145,13 +142,16 @@
       function initMap() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
+        directionsMapActive = true;
         var map2 = new google.maps.Map(document.getElementById('mapCanvas'), {
           center: new google.maps.LatLng(40.735657, -74.172367),
           zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         directionsDisplay.setMap(map2);
+        directionsDisplay.setPanel(document.getElementById('directionsPanel'));
         calculateAndDisplayRoute(directionsService, directionsDisplay);
+        $('#directionsPanel').show();
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -172,8 +172,18 @@
       // $('#mapCanvas').hide();
       // $('#mapDirections').show();
 
-    $('#resetmap').on('click', function() {
-      initialize();
+    $('#reset_button').on('click', function() {
+      if (directionsMapActive) {
+        directionsMapActive = false;
+        // document.getElementById('directionsPanel').innerHTML = "";      
+        $('#directionsPanel').hide();
+        initialize();
+      }
+      else {
+        map.setCenter(new google.maps.LatLng(40.735657, -74.172367));
+        map.setZoom(13);
+      }
+
     });
 
     if (isMobile) {
@@ -262,11 +272,11 @@
       <li>Technology &amp; Media Literacy</li>
       <li>Youth Development</li>
     </ul>
-    <button type="button" id="resetmap">Reset Map</button>
     <h5>Other filter controls below here</h5>
   </div>
 
   <div id="mapCanvas"></div>
+  <div id="directionsPanel"></div>
 
   <!--
   <div id="layer_selector">
@@ -288,8 +298,8 @@
   </div>
   -->
 
-  <div id="recenter_div">
-    <button id="recenter_button">Recenter Map</button>
+  <div id="reset_div">
+    <button id="reset_button">Reset Map</button>
   </div>
 </div>
 
@@ -307,22 +317,24 @@
         <form role="form">
             <div class="form-group">
               <label for="from-addr">From:</label>
-              <input type="text" class="form-control" id="from-addr">
+              <input type="text" class="form-control" placeholder="Home Address" id="from-addr">
             </div>
             <div class="form-group">
               <label for="to-addr">To:</label>
               <input type="text" class="form-control" id="to-addr">
-            </div>
-          </form>
+            </div>            
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="transit-cancel">Cancel</button>
         <button type="button" class="btn btn-default" id="get-transit" data-toggle="modal" data-dismiss="modal">Get Directions</button>
       </div>
     </div>
       
   </div>
 </div>
+
+
 
 <!-- <div id="directionsModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
