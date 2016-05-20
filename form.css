@@ -8,17 +8,19 @@ body {
 }
 
 #filters {
+    display: inline-block;
     background-color: lightgrey;
     width: 210px;
+    height: 723px;
     padding-left: 10px;
     padding-right: 10px;
+    margin-left: 10%
 }
 
 #googleMap {
-    width:83%;
-    height:700px;
-    float: right;
-    flex-shrink: 
+    display: inline-block;
+    width:60%;
+    height:722px;
 }
 
 .scrollable {
@@ -60,4 +62,5 @@ div.panel.show {
 #footer {
     background-color: white;
     margin-top: 50px
+    text-align: center;
 }
