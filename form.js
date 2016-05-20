@@ -1,21 +1,13 @@
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function dropdwn() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
+function initialize() {
+          var mapProp = {
+            center:new google.maps.LatLng(40.735657,-74.172367),
+            zoom:13,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+          var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+          }
+          
+      google.maps.event.addDomListener(window, 'load', initialize);
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
 
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
 
