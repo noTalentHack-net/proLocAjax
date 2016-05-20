@@ -149,6 +149,7 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         directionsDisplay.setMap(map2);
+        directionsDisplay.setPanel(null);
         directionsDisplay.setPanel(document.getElementById('directionsPanel'));
         calculateAndDisplayRoute(directionsService, directionsDisplay);
         $('#directionsPanel').show();
@@ -202,6 +203,20 @@
         legendOpenButton.style.display = 'block';
       }
     }
+
+    // Create the legend and display on the map
+    var legend = document.createElement('div');
+    legend.id = 'legend';
+    var content = [];
+    content.push('<h4>Wards</h4>');
+    content.push('<p><div class="color central"></div>Central</p>');
+    content.push('<p><div class="color north"></div>North</p>');
+    content.push('<p><div class="color south"></div>South</p>');
+    content.push('<p><div class="color east"></div>East</p>');
+    content.push('<p><div class="color west"></div>West</p>');
+    legend.innerHTML = content.join('');
+    legend.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
   }
 
 
