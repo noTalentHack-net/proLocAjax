@@ -16,9 +16,14 @@ body {
 
 #googleMap {
     width:83%;
-    height:816px;
+    height:700px;
     float: right;
     flex-shrink: 
+}
+
+.scrollable {
+    height: 600px; 
+    overflow-y: auto;
 }
 
 button.accordion {
