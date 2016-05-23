@@ -1,77 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<h1>Newark Thrives Program Locator</h1>
 		<link rel="stylesheet" type="text/css" href="form.css">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    	<script src="http://maps.googleapis.com/maps/api/js"></script>
+    	<!--<script src="http://maps.googleapis.com/maps/api/js"></script>-->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+  		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3"></script>
     	<script src="form.js"></script> 
 </head>
 
 <body>
+<div id="content">
+	<div id="header">
+		<h1>Newark Thrives! Youth Program Locator</h1>
+	</div>
 	<div id="filters">
-	    	<h2>Filter Controls</h2>
-			<form>
-			  Program / Organization Search: 
-			  <input type="text" name="firstname">
-			  <input type="submit">
-			</form>
-			<hr>
+    	<h3>Filter Controls</h3>
+		<form>
+		  Program / Organization Search: 
+		  <input type="text" name="firstname">
+		  <input type="submit">
+		</form>
+		<hr>
+
 	<div class="scrollable">
-		<h2>Grades Served</h2>
+		<h3>Grades Served</h3>
 		<div class="grades">
-			<input type="checkbox" class="grades" value="High School"/>High School (9-12) <br>
-			<input type="checkbox" class="grades" value="Middle School"/>Middle School (6-8)<br>
-			<input type="checkbox" class="grades" value="Elementary"/>Elementary (K-5) <br>
-			<input type="checkbox" class="grades" value="Kindergarten"/>Kindergarten <br>
-			<input type="checkbox" class="grades" value="Pre-K"/>Pre-K <br>
+			<input type="checkbox" class="grades" value="High School"/> High School (9-12) <br>
+			<input type="checkbox" class="grades" value="Middle School"/> Middle School (6-8)<br>
+			<input type="checkbox" class="grades" value="Elementary"/> Elementary (K-5) <br>
+			<input type="checkbox" class="grades" value="Kindergarten"/> Kindergarten <br>
+			<input type="checkbox" class="grades" value="Pre-K"/> Pre-K <br>
 			<hr>
 		</div>
 
-		<h2>Day's Offered</h2>
+		<h3>Days Offered</h3>
 		<div class="days">
-				<input type="checkbox" class="days" value="Monday"/>Mon <br>
-				<input type="checkbox" class="days" value="Tuesday"/>Tues <br>
-				<input type="checkbox" class="days" value="Wednesday"/>Wed <br>
-				<input type="checkbox" class="days" value="Thursday"/>Thur <br>
-				<input type="checkbox" class="days" value="Friday"/>Fri <br>
-				<input type="checkbox" class="days" value="Saturday"/>Sat <br>
-				<input type="checkbox" class="days" value="Sunday"/>Sun <br>
+				<input type="checkbox" class="days" value="Monday"/> Mon <br>
+				<input type="checkbox" class="days" value="Tuesday"/> Tues <br>
+				<input type="checkbox" class="days" value="Wednesday"/> Wed <br>
+				<input type="checkbox" class="days" value="Thursday"/> Thur <br>
+				<input type="checkbox" class="days" value="Friday"/> Fri <br>
+				<input type="checkbox" class="days" value="Saturday"/> Sat <br>
+				<input type="checkbox" class="days" value="Sunday"/> Sun <br>
 				<hr>
 		</div>
 	  	
-		<h2>Times Offered</h2>	
+		<h3>Times Offered</h3>	
 		<div class="times_O">	
-				<input type="checkbox" class="times_O" value="6:00-9:00 am"/>Morning <br>
-				<input type="checkbox" class="times_O" value="3:00-5:00 pm, 3:00-6:00 pm, 12:30-1:30" />Afternoon <br>
-				<input type="checkbox" class="times_O" value="5:00-8:00 pm, 6:00-8:00 pm"/>Evening <br>
-				<input type="checkbox" class="times_o" value="Summer All Day, 9:00-5:00 am"/>Summer All Day <br>
-				<input type="checkbox" class="times_o" value="Summer Half Day"/>Summer Half Day <br>
-				<input type="checkbox" class="times_o" value="Overnight"/>Overnight <br>
+				<input type="checkbox" class="times_O" value="6:00-9:00 am"/> Morning <br>
+				<input type="checkbox" class="times_O" value="3:00-5:00 pm, 3:00-6:00 pm, 12:30-1:30" /> Afternoon <br>
+				<input type="checkbox" class="times_O" value="5:00-8:00 pm, 6:00-8:00 pm"/> Evening <br>
+				<input type="checkbox" class="times_o" value="Summer All Day, 9:00-5:00 am"/> Summer All Day <br>
+				<input type="checkbox" class="times_o" value="Summer Half Day"/> Summer Half Day <br>
+				<input type="checkbox" class="times_o" value="Overnight"/> Overnight <br>
 				<hr>
 		</div>
 		
-	    <h2>Enrollment Type</h2>
+	    <h3>Enrollment Type</h3>
 	    <div class="enrollment_t">
-	    		<input type="checkbox" class="enrollment_t" value="Full Year"/>Full Year <br>
-				<input type="checkbox" class="enrollment_t" value="Summer"/>Summer <br>
-				<input type="checkbox" class="enrollment_t" value="Drop-in"/>Drop-in <br>
-	    		<input type="checkbox" class="enrollment_t" value="3 Session"/>3 Session <br>
-				<input type="checkbox" class="enrollment_t" value="Semester"/>Semester <br>
+	    		<input type="checkbox" class="enrollment_t" value="Full Year"/> Full Year <br>
+				<input type="checkbox" class="enrollment_t" value="Summer"/> Summer <br>
+				<input type="checkbox" class="enrollment_t" value="Drop-in"/> Drop-in <br>
+	    		<input type="checkbox" class="enrollment_t" value="3 Session"/> 3 Session <br>
+				<input type="checkbox" class="enrollment_t" value="Semester"/> Semester <br>
 				<hr>
 		</div>
 
 		<div class="wards">
-	    	<h2>Wards</h2>
-				<input type="checkbox" class="wards" value="North"/>North Ward<br>
-				<input type="checkbox" class="wards" value="South"/>South Ward<br>
-				<input type="checkbox" class="wards" value="East"/>East Ward<br>
-				<input type="checkbox" class="wards" value="West"/>West Ward<br>
+	    	<h3>Wards</h3>
+				<input type="checkbox" class="wards" value="Central"/> Central Ward<br>	
+				<input type="checkbox" class="wards" value="North"/> North Ward<br>
+				<input type="checkbox" class="wards" value="South"/> South Ward<br>
+				<input type="checkbox" class="wards" value="East"/> East Ward<br>
+				<input type="checkbox" class="wards" value="West"/> West Ward<br>
 				<hr>
 		</div>
 	
-		<h2>Program Categories</h2>
+		<h3>Program Categories</h3>
 				<button class="accordion">Academic</button>
 				<div class="panel">
 				  <input type="checkbox" class="academic" value="Academic Clubs"/>Academic Clubs<br>
@@ -318,16 +327,62 @@
 		</script>
 	</div>
 	</div>
-		<div id="googleMap"></div>
+	<div id="mapCanvas"></div>
+	<div id="directionsPanel"></div>
+	<div id="reset_div">
+    	<button id="reset_button">Reset Map</button>
+  	</div>
+    <div id="footer">
+	    <p>Built by No Talent Hack for HackNewark 2016 organized by 
+	        <a href="http://www.ci.newark.nj.us/brothers-keeper-newark/" target="_blank"> My Brother's Keeper Newark</a>, 
+	        City of Newark's Office of Information Technology
+	        <a href="http://www.codefornewark.org/" target="_blank">Code for Newark,</a>
+	        and Newark Thrives!
+	    </p>
+	</div>
+</div>
+
+<div id="transitModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Transit Directions</h4>
+      </div>
+      <div class="modal-body">
+        <p>Please enter your address to get transit directions to this location.</p>
+        <form role="form">
+            <div class="form-group">
+              <label for="from-addr">From:</label>
+              <input type="text" class="form-control" placeholder="Home Address" id="from-addr">
+            </div>
+            <div class="form-group">
+              <label for="to-addr">To:</label>
+              <input type="text" class="form-control" id="to-addr">
+            </div>            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="transit-cancel">Cancel</button>
+        <button type="button" class="btn btn-default" id="get-transit" data-toggle="modal" data-dismiss="modal">Get Directions</button>
+      </div>
+    </div>
+      
+  </div>
+</div>
+
+<!--
 	<footer>
         <div id="footer">
                 <p>Built by No Talent Hack for HackNewark 2016 organized by 
-                    <a href="http://www.ci.newark.nj.us/brothers-keeper-newark/"> My Brother's Keeper Newark</a>, 
+                    <a href="http://www.ci.newark.nj.us/brothers-keeper-newark/" target="_blank"> My Brother's Keeper Newark</a>, 
                     City of Newark's Office of Information Technology
-                    <a href="http://www.codefornewark.org/">Code for Newark,</a>
+                    <a href="http://www.codefornewark.org/" target="_blank">Code for Newark,</a>
                     and Newark Thrives!
                 </p>
          </div>
     </footer>
+  -->
 </body>
 </html>
