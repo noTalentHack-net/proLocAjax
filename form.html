@@ -12,7 +12,7 @@
     	<script src="form.js"></script> 
 </head>
 
-<body>
+<body onload="init()">
 <div id="content">
 	<div id="header">
 		<h1>Newark Thrives! Youth Program Locator</h1>
@@ -313,18 +313,6 @@
 				<div class="panel">
 				  <input type="checkbox" class="Faith-Based/ Spirituality" value="Faith-Based/ Spirituality"/>Faith-Based/ Spirituality<br>
 				</div>
-
-		<script>
-			var acc = document.getElementsByClassName("accordion");
-			var i;
-
-			for (i = 0; i < acc.length; i++) {
-			    acc[i].onclick = function(){
-			        this.classList.toggle("active");
-			        this.nextElementSibling.classList.toggle("show");
-			  }
-			}
-		</script>
 	</div>
 	</div>
 	<div id="mapCanvas"></div>
