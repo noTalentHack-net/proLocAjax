@@ -13,6 +13,9 @@ html, body {
 #header {
     width: 100%;
     /*height: 50px;*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #header h1 {
@@ -46,6 +49,11 @@ html, body {
     height:722px;
     */
     height: 100%;
+}
+
+#progList {
+	position: relative;
+	overflow: hidden;
 }
 
 .scrollable {
@@ -157,6 +165,33 @@ div.panel.show {
     font-size: 1em;
     border-radius: 20px;
 }
+
+#mapView {
+	background-color: #772950;
+    border: 2px solid #ffffff;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    border-radius: 20px;
+	margin-left: 20px;
+}
+
+#listView {
+	background-color: #772950;
+    border: 2px solid #ffffff;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    border-radius: 20px;
+	margin-right: 20px;
+}
+
 #infotitle {
     background-color: #772950;
     color: white;
