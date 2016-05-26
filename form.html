@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+		<title>Program Locator</title>
 		<link rel="stylesheet" type="text/css" href="form.css">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -9,74 +10,76 @@
   		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     	<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3"></script>
-    	<script src="form.js"></script> 
+    	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    	<script src="form.js"></script>
 </head>
 
 <body onload="init()">
 <div id="content">
 	<div id="header">
 		<h1>Newark Thrives! Youth Program Locator</h1>
+		<button id="mapView">Map View</button><button id="listView">List View</button>
 	</div>
 	<div id="filters">
     	<h3>Filter Controls</h3>
 		<form>
 		  Program / Organization Search: 
-		  <input type="text" name="firstname">
-		  <input type="submit">
+		  <input type="text" id="searchQuery" value="">
+		  <button id="submit-btn">Submit</button>
 		</form>
 		<hr>
 
 	<div class="scrollable">
 		<h3>Grades Served</h3>
 		<div class="grades">
-			<input type="checkbox" class="grades" value="High School"/> High School (9-12) <br>
-			<input type="checkbox" class="grades" value="Middle School"/> Middle School (6-8)<br>
-			<input type="checkbox" class="grades" value="Elementary"/> Elementary (K-5) <br>
-			<input type="checkbox" class="grades" value="Kindergarten"/> Kindergarten <br>
-			<input type="checkbox" class="grades" value="Pre-K"/> Pre-K <br>
+			<input type="checkbox" class="gradesCheck" value="High School"/> High School (9-12) <br>
+			<input type="checkbox" class="gradesCheck" value="Middle School"/> Middle School (6-8)<br>
+			<input type="checkbox" class="gradesCheck" value="Elementary"/> Elementary (K-5) <br>
+			<input type="checkbox" class="gradesCheck" value="Kindergarten"/> Kindergarten <br>
+			<input type="checkbox" class="gradesCheck" value="Pre-K"/> Pre-K <br>
 			<hr>
 		</div>
 
 		<h3>Days Offered</h3>
 		<div class="days">
-				<input type="checkbox" class="days" value="Monday"/> Mon <br>
-				<input type="checkbox" class="days" value="Tuesday"/> Tues <br>
-				<input type="checkbox" class="days" value="Wednesday"/> Wed <br>
-				<input type="checkbox" class="days" value="Thursday"/> Thur <br>
-				<input type="checkbox" class="days" value="Friday"/> Fri <br>
-				<input type="checkbox" class="days" value="Saturday"/> Sat <br>
-				<input type="checkbox" class="days" value="Sunday"/> Sun <br>
+				<input type="checkbox" class="daysCheck" value="Monday"/> Mon <br>
+				<input type="checkbox" class="daysCheck" value="Tuesday"/> Tues <br>
+				<input type="checkbox" class="daysCheck" value="Wednesday"/> Wed <br>
+				<input type="checkbox" class="daysCheck" value="Thursday"/> Thur <br>
+				<input type="checkbox" class="daysCheck" value="Friday"/> Fri <br>
+				<input type="checkbox" class="daysCheck" value="Saturday"/> Sat <br>
+				<input type="checkbox" class="daysCheck" value="Sunday"/> Sun <br>
 				<hr>
 		</div>
 	  	
 		<h3>Times Offered</h3>	
 		<div class="times_O">	
-				<input type="checkbox" class="times_O" value="6:00-9:00 am"/> Morning <br>
-				<input type="checkbox" class="times_O" value="3:00-5:00 pm, 3:00-6:00 pm, 12:30-1:30" /> Afternoon <br>
-				<input type="checkbox" class="times_O" value="5:00-8:00 pm, 6:00-8:00 pm"/> Evening <br>
-				<input type="checkbox" class="times_o" value="Summer All Day, 9:00-5:00 am"/> Summer All Day <br>
-				<input type="checkbox" class="times_o" value="Summer Half Day"/> Summer Half Day <br>
-				<input type="checkbox" class="times_o" value="Overnight"/> Overnight <br>
+				<input type="checkbox" class="times_oCheck" value="6:00-9:00 am"/> Morning <br>
+				<input type="checkbox" class="times_oCheck" value="3:00-5:00 pm, 3:00-6:00 pm, 12:30-1:30" /> Afternoon <br>
+				<input type="checkbox" class="times_oCheck" value="5:00-8:00 pm, 6:00-8:00 pm"/> Evening <br>
+				<input type="checkbox" class="times_oCheck" value="Summer All Day, 9:00-5:00 am"/> Summer All Day <br>
+				<input type="checkbox" class="times_oCheck" value="Summer Half Day"/> Summer Half Day <br>
+				<input type="checkbox" class="times_oCheck" value="Overnight"/> Overnight <br>
 				<hr>
 		</div>
 		
 	    <h3>Enrollment Type</h3>
 	    <div class="enrollment_t">
-	    		<input type="checkbox" class="enrollment_t" value="Full Year"/> Full Year <br>
-				<input type="checkbox" class="enrollment_t" value="Summer"/> Summer <br>
-				<input type="checkbox" class="enrollment_t" value="Drop-in"/> Drop-in <br>
-	    		<input type="checkbox" class="enrollment_t" value="3 Session"/> 3 Session <br>
-				<input type="checkbox" class="enrollment_t" value="Semester"/> Semester <br>
+	    		<input type="checkbox" class="enrollment_tCheck" value="Full Year"/> Full Year <br>
+				<input type="checkbox" class="enrollment_tCheck" value="Summer"/> Summer <br>
+				<input type="checkbox" class="enrollment_tCheck" value="Drop-in"/> Drop-in <br>
+	    		<input type="checkbox" class="enrollment_tCheck" value="3 Session"/> 3 Session <br>
+				<input type="checkbox" class="enrollment_tCheck" value="Semester"/> Semester <br>
 				<hr>
 		</div>
 
 		<div class="wards">
 	    	<h3>Wards</h3>
-				<input type="checkbox" class="wards" value="Central"/> Central Ward<br>	
-				<input type="checkbox" class="wards" value="North"/> North Ward<br>
-				<input type="checkbox" class="wards" value="South"/> South Ward<br>
-				<input type="checkbox" class="wards" value="East"/> East Ward<br>
-				<input type="checkbox" class="wards" value="West"/> West Ward<br>
+				<input type="checkbox" class="wardsCheck" value="Central"/> Central Ward<br>
+				<input type="checkbox" class="wardsCheck" value="North"/> North Ward<br>
+				<input type="checkbox" class="wardsCheck" value="South"/> South Ward<br>
+				<input type="checkbox" class="wardsCheck" value="East"/> East Ward<br>
+				<input type="checkbox" class="wardsCheck" value="West"/> West Ward<br>
 				<hr>
 		</div>
 	
@@ -316,6 +319,7 @@
 	</div>
 	</div>
 	<div id="mapCanvas"></div>
+	<div id="progList"></div>
 	<div id="directionsPanel"></div>
 	<div id="reset_div">
     	<button id="reset_button">Reset Map</button>
@@ -372,5 +376,6 @@
          </div>
     </footer>
   -->
+<script src="progList.js"></script>
 </body>
 </html>
