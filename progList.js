@@ -54,15 +54,12 @@ Grades Served = 29
 Enrollment Type = 31
 */
 
-var appendList = function(progArray){
-	listArray = [[],[],[],[]];
-	$("#progList").append('<ul class="programs">'+progArray[7]+'<br>'+'<a href="'+progArray[8]+'">'+progArray[8]+'</a>'+'<br>'+progArray[10]+'<br>'+progArray[6]+'<br>'+progArray[20]+'<br>'+progArray[3]+'<br>'+progArray[29]+'<br>'+progArray[31]+'<br>'+progArray[21]+'<br>'+progArray[22]+'<br>'+progArray[23]+'<br>'+progArray[24]+'<br>'+progArray[27]+'</ul>');
-};
-
 $("#progList").hide();
 
 	$.getJSON(dataOstUrl, function(data){
 		var rows = data.rows;
+		var columns = data.columns;
+		console.log(columns);
 		var searchProg = function(regexp, colNum, listArrayNum){
 			var pos = 0;
 			var array = [];
@@ -96,13 +93,22 @@ $("#progList").hide();
 					var checkVal = [];
 
 					if ($(checkboxCat+':checked').length == 0) {
-						$(checkboxCat).each(function(){
-							checkVal.push(this.value);
-						});
+						var matchAll = /[\s\S]*/gi;
+						checkVal.push(matchAll);
 					} else {
 						$(checkboxCat).each(function(){
 							if(this.checked){
-								checkVal.push(this.value);
+
+								if (this.value.search(/,/) != -1) {
+									var multiVal = this.value.split(",");
+									for (var i = 0; i < multiVal.length; i++) {
+										checkVal.push(multiVal[i]);
+										console.log(multiVal[i]);
+									}
+								} else {
+									checkVal.push(this.value);
+								}
+								
 							}
 						});
 					}
@@ -117,8 +123,14 @@ $("#progList").hide();
 					});
 
 					listArray[listArrayNum] = Array.from(new Set(array));
+				allFilters(checkboxCat);
 				
-				for (var i = 0; i < filterArray.length; i++) {
+			});
+
+		};
+		
+		var allFilters = function(checkboxCat){
+			for (var i = 0; i < filterArray.length; i++) {
 					if (filterArray[i] != checkboxCat) {
 
 						var otherCheckboxCat = filterArray[i];
@@ -136,13 +148,22 @@ $("#progList").hide();
 						var checkVal = [];
 
 						if ($(otherCheckboxCat+':checked').length == 0) {
-							$(otherCheckboxCat).each(function(){
-								checkVal.push(this.value);
-							});
+							var matchAll = /[\s\S]*/gi;
+							checkVal.push(matchAll);
 						} else {
 							$(otherCheckboxCat).each(function(){
 								if(this.checked){
-									checkVal.push(this.value);
+									
+									if (this.value.search(/,/) != -1) {
+										var multiVal = this.value.split(",");
+										for (var i = 0; i < multiVal.length; i++) {
+											checkVal.push(multiVal[i]);
+											console.log(multiVal[i]);
+										}
+									} else {
+										checkVal.push(this.value);
+									}
+
 								}
 							});
 						}
@@ -164,10 +185,8 @@ $("#progList").hide();
 						// do nothing
 					}
 				}
-				//console.log(listArray[0]);
-				//console.log(listArray[1]);
-				console.log(array_intersect(listArray[0], listArray[1]));
-				var prog = array_intersect(listArray[0], listArray[1], listArray[3]);
+				
+				var prog = array_intersect(listArray[0], listArray[1], listArray[2], listArray[3]);
 				console.log(prog.length);
 				
 				if (prog.length == 0) {
@@ -175,86 +194,16 @@ $("#progList").hide();
 				}
 
 				prog.forEach(function(progArray){
-					$("#progList").append('<ul class="programs">'+rows[progArray][7]+'<br>'+'<a href="'+rows[progArray][8]+'">'+rows[progArray][8]+'</a>'+'<br>'+rows[progArray][10]+'<br>'+rows[progArray][6]+'<br>'+rows[progArray][20]+'<br>'+rows[progArray][3]+'<br>'+rows[progArray][29]+'<br>'+rows[progArray][31]+'<br>'+rows[progArray][21]+'<br>'+rows[progArray][22]+'<br>'+rows[progArray][23]+'<br>'+rows[progArray][24]+'<br>'+rows[progArray][27]+'</ul>');
-				});
-				
-			});
-
-		}
-		/*
-		var allFilters = function(clickView){
-			for (var i = 0; i < filterArray.length; i++) {
-					if (filterArray[i] != clickView) {
-
-						var otherCheckboxCat = filterArray[i];
-						if (otherCheckboxCat == '.gradesCheck') {
-							var colNum = 29, listArrayNum = 0;
-						} else if (otherCheckboxCat == '.daysCheck') {
-							var colNum = 23, listArrayNum = 1;
-						} else if (otherCheckboxCat == '.times_oCheck') {
-							var colNum = 24, listArrayNum = 2;
-						} else if (otherCheckboxCat == '.enrollment_tCheck') {
-							var colNum = 31, listArrayNum = 3;
-						} else if (otherCheckboxCat == '.wardsCheck') {
-							var colNum = 89, listArrayNum = 4;
-						}
-						var checkVal = [];
-
-						if ($(otherCheckboxCat+':checked').length == 0) {
-							$(otherCheckboxCat).each(function(){
-								checkVal.push(this.value);
-							});
-						} else {
-							$(otherCheckboxCat).each(function(){
-								if(this.checked){
-									checkVal.push(this.value);
-								}
-							});
-						}
-
-						var array = [];
-
-						checkVal.forEach(function(value){
-    						var regexp = new RegExp(value, "i");
-    						$('#progList').text("");
-    						var results = searchProg(regexp,colNum,listArrayNum);
-    						results.forEach(function(pos){
-    							array.push(pos);
-    						});
-						});
-
-						listArray[listArrayNum] = Array.from(new Set(array));
-
-					} else {
-						// do nothing
-					}
-				}
-
-				var prog = array_intersect(listArray[0], listArray[1], listArray[2], listArray[3]);
-				
-				if (prog.length == 0) {
-					$("#progList").append('<h3>Filter choices are too specific and did not result in any programs. Please try a broader search.</h3>');
-				}
-
-				prog.forEach(function(progArray){
-					$("#progList").append('<ul class="programs">'+rows[progArray][7]+'<br>'+'<a href="'+rows[progArray][8]+'">'+rows[progArray][8]+'</a>'+'<br>'+rows[progArray][10]+'<br>'+rows[progArray][6]+'<br>'+rows[progArray][20]+'<br>'+rows[progArray][3]+'<br>'+rows[progArray][29]+'<br>'+rows[progArray][31]+'<br>'+rows[progArray][21]+'<br>'+rows[progArray][22]+'<br>'+rows[progArray][23]+'<br>'+rows[progArray][24]+'<br>'+rows[progArray][27]+'</ul>');
+					$("#progList").append('<hr style="height:1px;border:none;color:#772950;background-color:#772950;" />'+'<ul class="programs">'+columns[7]+': '+rows[progArray][7]+'<br>'+columns[8]+': '+'<a href="'+rows[progArray][8]+'">'+rows[progArray][8]+'</a>'+'<br>'+columns[10]+': '+rows[progArray][10]+'<br>'+columns[6]+': '+rows[progArray][6]+'<br>'+columns[20]+': '+rows[progArray][20]+'<br>'+columns[3]+': '+rows[progArray][3]+'<br>'+columns[29]+': '+rows[progArray][29]+'<br>'+columns[31]+': '+rows[progArray][31]+'<br>'+columns[21]+': '+rows[progArray][21]+'<br>'+columns[22]+': '+rows[progArray][22]+'<br>'+columns[23]+': '+rows[progArray][23]+'<br>'+columns[24]+': '+rows[progArray][24]+'<br>'+columns[27]+': '+rows[progArray][27]+'</ul>');
 				});
 		};
-		*/
-
+		
 		$("#listView").click(function(){
 			$('#progList').text("");
 			$('#mapCanvas').hide();
 			$('#reset_div').hide();
 
-			//allFilters("#listView");
-
-			
-			rows.forEach(function(prog){
-    			appendList(prog);
-    			console.log("hits here");
-    		});
-    		console.log(rows.length);
+			allFilters("#listView");
 
 
 			$('#progList').show();
@@ -265,14 +214,6 @@ $("#progList").hide();
     		$("#mapCanvas").show();
     		$('#reset_div').show();
 		});
-
-		//<input type="text" id="searchQuery" value="">
-		//<button id="submit-btn">Submit</button>
-		/*
-		$("#submit-btn").click(function(){
-			//console.log($("#searchQuery").value());
-		});
-		*/
 
 		checkboxes(".gradesCheck");
 		checkboxes(".daysCheck");
