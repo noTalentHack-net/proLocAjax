@@ -198,21 +198,20 @@ $("#progList").hide();
 				});
 		};
 		
-		$("#listView").click(function(){
-			$('#progList').text("");
-			$('#mapCanvas').hide();
-			$('#reset_div').hide();
-
-			allFilters("#listView");
-
-
-			$('#progList').show();
-		});
-
-		$("#mapView").click(function(){
-    		$("#progList").hide();
-    		$("#mapCanvas").show();
-    		$('#reset_div').show();
+		$("#toggleView").click(function(){
+			if ($('#toggleView').text() == 'Map View') {
+				$("#progList").hide();
+				$("#mapCanvas").show();
+				$('#reset_div').show();
+				$('#toggleView').text("List View");
+			} else if ($('#toggleView').text() == 'List View') {
+				$('#progList').text("");
+				$('#mapCanvas').hide();
+				$('#reset_div').hide();
+				$('#toggleView').text("Map View");
+				allFilters("#toggleView");
+				$('#progList').show();
+			}
 		});
 
 		checkboxes(".gradesCheck");
