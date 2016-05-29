@@ -33,9 +33,9 @@ function array_intersect() {
   return ret;
 }
 
-var dataOstUrl = 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201eTYAHZAF5EQGuBSo0tPZY837lAqm2AqJ_hH-6NbS&key=AIzaSyC8Tw06vYAmuQHYg3Uw4dgVGta3DNhBO-w';
-var listArray = [[],[],[],[]];
-var filterArray = ['.gradesCheck', '.daysCheck', '.times_oCheck', '.enrollment_tCheck'];
+var dataOstUrl = 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201bI3g-jmQbx2FyJd3vJexiZEb3dGxWBs70ppsMtQ0&key=AIzaSyC8Tw06vYAmuQHYg3Uw4dgVGta3DNhBO-w';
+var listArray = [[],[],[],[],[]];
+var filterArray = ['.gradesCheck', '.daysCheck', '.times_oCheck', '.enrollment_tCheck', '.wardsCheck'];
 
 /**
 Column names and corresponding column numbers
@@ -52,6 +52,7 @@ Time of Program = 24
 Meals Offered at Program = 27
 Grades Served = 29
 Enrollment Type = 31
+Ward = 2
 */
 
 $("#progList").hide();
@@ -87,7 +88,7 @@ $("#progList").hide();
 					} else if (checkboxCat == '.enrollment_tCheck') {
 						var colNum = 31, listArrayNum = 3;
 					} else if (checkboxCat == '.wardsCheck') {
-						var colNum = 89, listArrayNum = 4;
+						var colNum = 2, listArrayNum = 4;
 					}
 
 					var checkVal = [];
@@ -143,7 +144,7 @@ $("#progList").hide();
 						} else if (otherCheckboxCat == '.enrollment_tCheck') {
 							var colNum = 31, listArrayNum = 3;
 						} else if (otherCheckboxCat == '.wardsCheck') {
-							var colNum = 89, listArrayNum = 4;
+							var colNum = 2, listArrayNum = 4;
 						}
 						var checkVal = [];
 
@@ -186,7 +187,7 @@ $("#progList").hide();
 					}
 				}
 				
-				var prog = array_intersect(listArray[0], listArray[1], listArray[2], listArray[3]);
+				var prog = array_intersect(listArray[0], listArray[1], listArray[2], listArray[3], listArray[4]);
 				console.log(prog.length);
 				
 				if (prog.length == 0) {
@@ -218,6 +219,7 @@ $("#progList").hide();
 		checkboxes(".daysCheck");
 		checkboxes(".times_oCheck");
 		checkboxes(".enrollment_tCheck");
+		checkboxes(".wardsCheck");
 
 	}).error(function(e){
 		$('#progList').text('Unable to load program list');
