@@ -33,42 +33,45 @@ function array_intersect() {
   }
   return ret;
 }
-var myApiKey = 'AIzaSyC8Tw06vYAmuQHYg3Uw4dgVGta3DNhBO-w';
-var vinceApiKey = 'AIzaSyAp4nVJu4DyB0fEx07op_7C6yGh53JqMzw';
 
-var dataOstUrl = 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201cIEAw1VCm2rcYL5_FqOIHjhWer2WGN3SIVvaJxMm&key=AIzaSyAp4nVJu4DyB0fEx07op_7C6yGh53JqMzw';
+var dataOSTpkeyNew = '1YBEx5Ye65ZTSKJgc2_X_pZPZKuku8FSogmH91T9C';
+var dataOSTpkey = '1cIEAw1VCm2rcYL5_FqOIHjhWer2WGN3SIVvaJxMm';
+
+//var dataOstUrl = 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%' + table_id + '&key=' + api_key;
+
+var dataOstUrl = 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201YBEx5Ye65ZTSKJgc2_X_pZPZKuku8FSogmH91T9C&key=AIzaSyAp4nVJu4DyB0fEx07op_7C6yGh53JqMzw';
 var listArray = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 var filterArray = ['.gradesCheck', '.daysCheck', '.times_oCheck', '.enrollment_tCheck', '.wardsCheck', '.academic', '.ArtsAndCulture', '.Environment', '.SportsAndRecreation', '.TechnologyMediaLiteracy', '.EarlyEducation', '.JobsCareerExploration', '.CommunityServiceCivicEngagement', '.YouthDevelopment', '.CollegeReadiness', '.Health', '.FaithBasedSpirituality'];
 
 /**
 Column names and corresponding column numbers
-Name of Program = 7
-Program Website = 8
-Program Site Telephone = 10
-Program Site Address = 6
-Name of Organization = 3
-Overview of Program = 20
-Date of Program Start = 21
-Date of Program Finish = 22
-Days offered = 23
-Time of Program = 24
-Meals Offered at Program = 27
-Grades Served = 29
-Enrollment Type = 31
-Ward = 2
+Name of Program = 8
+Program Website = 9
+Program Site Telephone = 11
+Program Site Address = 7
+Name of Organization = 4
+Overview of Program = 21
+Date of Program Start = 22
+Date of Program Finish = 23
+Days offered = 24
+Time of Program = 25
+Meals Offered at Program = 28
+Grades Served = 30
+Enrollment Type = 32
+Ward = 3
 
-Academic = 91
-Arts and Culture = 92
-Environment = 93
-Sports and Recreation = 94
-Technology and Media Literacy = 95
-Early Education = 96
-Jobs/ Career Exploration = 97
-Community Service/Civic Engagement = 98
-Youth Development = 99
-College Readiness = 100
-Health = 101
-Faith-Based/ Spirituality = 102
+Academic = 92
+Arts and Culture = 93
+Environment = 94
+Sports and Recreation = 95
+Technology and Media Literacy = 96
+Early Education = 97
+Jobs/ Career Exploration = 98
+Community Service/Civic Engagement = 99
+Youth Development = 100
+College Readiness = 101
+Health = 102
+Faith-Based/ Spirituality = 103
 */
 
 $("#progList").hide();
@@ -76,7 +79,6 @@ $("#progList").hide();
 	$.getJSON(dataOstUrl, function(data){
 		var rows = data.rows;
 		var columns = data.columns;
-		console.log(columns);
 		var searchProg = function(regexp, colNum, listArrayNum){
 			var pos = 0;
 			var array = [];
@@ -94,42 +96,40 @@ $("#progList").hide();
 
 			$(checkboxCat).on('click',function(){
 
-				console.log(checkboxCat);
-
 					if (checkboxCat == filterArray[0]) {
-						var colNum = 29, listArrayNum = 0;
+						var colNum = 30, listArrayNum = 0;
 					} else if (checkboxCat == filterArray[1]) {
-						var colNum = 23, listArrayNum = 1;
+						var colNum = 24, listArrayNum = 1;
 					} else if (checkboxCat == filterArray[2]) {
-						var colNum = 24, listArrayNum = 2;
+						var colNum = 25, listArrayNum = 2;
 					} else if (checkboxCat == filterArray[3]) {
-						var colNum = 31, listArrayNum = 3;
+						var colNum = 32, listArrayNum = 3;
 					} else if (checkboxCat == filterArray[4]) {
-						var colNum = 2, listArrayNum = 4;
+						var colNum = 3, listArrayNum = 4;
 					} else if (checkboxCat == filterArray[5]) {
-						var colNum = 91, listArrayNum = 5;
+						var colNum = 92, listArrayNum = 5;
 					} else if (checkboxCat == filterArray[6]) {
-						var colNum = 92, listArrayNum = 6;
+						var colNum = 93, listArrayNum = 6;
 					} else if (checkboxCat == filterArray[7]) {
-						var colNum = 93, listArrayNum = 7;
+						var colNum = 94, listArrayNum = 7;
 					} else if (checkboxCat == filterArray[8]) {
-						var colNum = 94, listArrayNum = 8;
+						var colNum = 95, listArrayNum = 8;
 					} else if (checkboxCat == filterArray[9]) {
-						var colNum = 95, listArrayNum = 9;
+						var colNum = 96, listArrayNum = 9;
 					} else if (checkboxCat == filterArray[10]) {
-						var colNum = 96, listArrayNum = 10;
+						var colNum = 97, listArrayNum = 10;
 					} else if (checkboxCat == filterArray[11]) {
-						var colNum = 97, listArrayNum = 11;
+						var colNum = 98, listArrayNum = 11;
 					} else if (checkboxCat == filterArray[12]) {
-						var colNum = 98, listArrayNum = 12;
+						var colNum = 99, listArrayNum = 12;
 					} else if (checkboxCat == filterArray[13]) {
-						var colNum = 99, listArrayNum = 13;
+						var colNum = 100, listArrayNum = 13;
 					} else if (checkboxCat == filterArray[14]) {
-						var colNum = 100, listArrayNum = 14;
+						var colNum = 101, listArrayNum = 14;
 					} else if (checkboxCat == filterArray[15]) {
-						var colNum = 101, listArrayNum = 15;
+						var colNum = 102, listArrayNum = 15;
 					} else if (checkboxCat == filterArray[16]) {
-						var colNum = 102, listArrayNum = 16;
+						var colNum = 103, listArrayNum = 16;
 					}
 
 					var checkVal = [];
@@ -145,7 +145,6 @@ $("#progList").hide();
 									var multiVal = this.value.split(",");
 									for (var i = 0; i < multiVal.length; i++) {
 										checkVal.push(multiVal[i]);
-										console.log(multiVal[i]);
 									}
 								} else {
 									checkVal.push(this.value);
@@ -177,39 +176,39 @@ $("#progList").hide();
 
 						var otherCheckboxCat = filterArray[i];
 						if (otherCheckboxCat == filterArray[0]) {
-							var colNum = 29, listArrayNum = 0;
+							var colNum = 30, listArrayNum = 0;
 						} else if (otherCheckboxCat == filterArray[1]) {
-							var colNum = 23, listArrayNum = 1;
+							var colNum = 24, listArrayNum = 1;
 						} else if (otherCheckboxCat == filterArray[2]) {
-							var colNum = 24, listArrayNum = 2;
+							var colNum = 25, listArrayNum = 2;
 						} else if (otherCheckboxCat == filterArray[3]) {
-							var colNum = 31, listArrayNum = 3;
+							var colNum = 32, listArrayNum = 3;
 						} else if (otherCheckboxCat == filterArray[4]) {
-							var colNum = 2, listArrayNum = 4;
+							var colNum = 3, listArrayNum = 4;
 						} else if (otherCheckboxCat == filterArray[5]) {
-							var colNum = 91, listArrayNum = 5;
+							var colNum = 92, listArrayNum = 5;
 						} else if (otherCheckboxCat == filterArray[6]) {
-							var colNum = 92, listArrayNum = 6;
+							var colNum = 93, listArrayNum = 6;
 						} else if (otherCheckboxCat == filterArray[7]) {
-							var colNum = 93, listArrayNum = 7;
+							var colNum = 94, listArrayNum = 7;
 						} else if (otherCheckboxCat == filterArray[8]) {
-							var colNum = 94, listArrayNum = 8;
+							var colNum = 95, listArrayNum = 8;
 						} else if (otherCheckboxCat == filterArray[9]) {
-							var colNum = 95, listArrayNum = 9;
+							var colNum = 96, listArrayNum = 9;
 						} else if (otherCheckboxCat == filterArray[10]) {
-							var colNum = 96, listArrayNum = 10;
+							var colNum = 97, listArrayNum = 10;
 						} else if (otherCheckboxCat == filterArray[11]) {
-							var colNum = 97, listArrayNum = 11;
+							var colNum = 98, listArrayNum = 11;
 						} else if (otherCheckboxCat == filterArray[12]) {
-							var colNum = 98, listArrayNum = 12;
+							var colNum = 99, listArrayNum = 12;
 						} else if (otherCheckboxCat == filterArray[13]) {
-							var colNum = 99, listArrayNum = 13;
+							var colNum = 100, listArrayNum = 13;
 						} else if (otherCheckboxCat == filterArray[14]) {
-							var colNum = 100, listArrayNum = 14;
+							var colNum = 101, listArrayNum = 14;
 						} else if (otherCheckboxCat == filterArray[15]) {
-							var colNum = 101, listArrayNum = 15;
+							var colNum = 102, listArrayNum = 15;
 						} else if (otherCheckboxCat == filterArray[16]) {
-							var colNum = 102, listArrayNum = 16;
+							var colNum = 103, listArrayNum = 16;
 						}
 
 						var checkVal = [];
@@ -225,7 +224,6 @@ $("#progList").hide();
 										var multiVal = this.value.split(",");
 										for (var i = 0; i < multiVal.length; i++) {
 											checkVal.push(multiVal[i]);
-											console.log(multiVal[i]);
 										}
 									} else {
 										checkVal.push(this.value);
@@ -254,7 +252,6 @@ $("#progList").hide();
 				}
 				
 				var prog = array_intersect(listArray[0], listArray[1], listArray[2], listArray[3], listArray[4], listArray[5], listArray[6], listArray[7], listArray[8], listArray[9], listArray[10], listArray[11], listArray[12], listArray[13], listArray[14], listArray[15], listArray[16]);
-				console.log(prog.length);
 				
 				if (prog.length == 0) {
 					$("#progList").append('<h3>Filter choices are too specific and did not result in any programs. Please try a broader search.</h3>');
@@ -262,13 +259,11 @@ $("#progList").hide();
 
 				var whereArray =[];
 				prog.forEach(function(progArray){
-					whereArray.push(rows[progArray][108]);
-					$("#progList").append('<hr style="height:1px;border:none;color:#772950;background-color:#772950;" />'+'<ul class="programs">'+columns[7]+': '+rows[progArray][7]+'<br>'+columns[8]+': '+'<a href="'+rows[progArray][8]+'">'+rows[progArray][8]+'</a>'+'<br>'+columns[10]+': '+rows[progArray][10]+'<br>'+columns[6]+': '+rows[progArray][6]+'<br>'+columns[20]+': '+rows[progArray][20]+'<br>'+columns[3]+': '+rows[progArray][3]+'<br>'+columns[29]+': '+rows[progArray][29]+'<br>'+columns[31]+': '+rows[progArray][31]+'<br>'+columns[21]+': '+rows[progArray][21]+'<br>'+columns[22]+': '+rows[progArray][22]+'<br>'+columns[23]+': '+rows[progArray][23]+'<br>'+columns[24]+': '+rows[progArray][24]+'<br>'+columns[27]+': '+rows[progArray][27]+'</ul>');
+					whereArray.push(rows[progArray][0]);
+					$("#progList").append('<hr style="height:1px;border:none;color:#772950;background-color:#772950;" />'+'<ul class="programs">'+columns[8]+': '+rows[progArray][8]+'<br>'+columns[9]+': '+'<a href="'+rows[progArray][9]+'">'+rows[progArray][9]+'</a>'+'<br>'+columns[11]+': '+rows[progArray][11]+'<br>'+columns[7]+': '+rows[progArray][7]+'<br>'+columns[21]+': '+rows[progArray][21]+'<br>'+columns[4]+': '+rows[progArray][4]+'<br>'+columns[30]+': '+rows[progArray][30]+'<br>'+columns[32]+': '+rows[progArray][32]+'<br>'+columns[22]+': '+rows[progArray][22]+'<br>'+columns[23]+': '+rows[progArray][23]+'<br>'+columns[24]+': '+rows[progArray][24]+'<br>'+columns[25]+': '+rows[progArray][25]+'<br>'+columns[28]+': '+rows[progArray][28]+'</ul>');
 				});
 
 				filterMap(pointsLayer, tableId, locationColumn, whereArray);
-
-				console.log(whereArray);
 
 		};
 		
@@ -287,6 +282,35 @@ $("#progList").hide();
 				allFilters("#toggleView");
 				$('#progList').show();
 			}
+		});
+
+		$("#submit-btn").click(function(){
+			$('#progList').text("");
+			var value = $("#searchQuery").val();
+			var regexp = new RegExp(value, "i");
+			var j = 0;
+			var progArr = [];
+			rows.forEach(function(prog){
+				
+				prog.forEach(function(column){
+					column = column.toString();
+					var test = column.search(regexp);
+					if (test != -1) {
+						progArr.push(prog[0]);
+					}
+				});
+				
+				j++;
+			});
+
+			var uniqueArray = Array.from(new Set(progArr));
+				
+				uniqueArray.forEach(function(progArray){
+					$("#progList").append('<hr style="height:1px;border:none;color:#772950;background-color:#772950;" />'+'<ul class="programs">'+columns[8]+': '+progArray[8]+'<br>'+columns[9]+': '+'<a href="'+progArray[9]+'">'+progArray[9]+'</a>'+'<br>'+columns[11]+': '+progArray[11]+'<br>'+columns[7]+': '+progArray[7]+'<br>'+columns[21]+': '+progArray[21]+'<br>'+columns[4]+': '+progArray[4]+'<br>'+columns[30]+': '+progArray[30]+'<br>'+columns[32]+': '+progArray[32]+'<br>'+columns[22]+': '+progArray[22]+'<br>'+columns[23]+': '+progArray[23]+'<br>'+columns[24]+': '+progArray[24]+'<br>'+columns[25]+': '+progArray[25]+'<br>'+columns[28]+': '+progArray[28]+'</ul>');
+				});
+
+				filterMap(pointsLayer, tableId, locationColumn, uniqueArray);
+			
 		});
 
 		checkboxes(filterArray[0]);
@@ -311,8 +335,6 @@ $("#progList").hide();
 		$('#progList').text('Unable to load program list');
 	});
 
-
-
 // Ivan's Code
 
   //document.getElementById('directionsPanel').innerHTML = "";
@@ -328,7 +350,7 @@ $("#progList").hide();
   //mapDiv.style.width = isMobile ? '100%' : '500px';
   //mapDiv.style.height = isMobile ? '100%' : '300px';
 
-  var tableId = "1cIEAw1VCm2rcYL5_FqOIHjhWer2WGN3SIVvaJxMm";
+  var tableId = "1YBEx5Ye65ZTSKJgc2_X_pZPZKuku8FSogmH91T9C";
 
   var locationColumn = "col0";
 
@@ -506,7 +528,6 @@ google.maps.event.addDomListener(document.getElementById('get-transit'),'click',
   //var where = "'Sports and Recreation' MATCHES '%Basketball%'";
 
     function filterMap(pointsLayer, tableId, map, whereArray) {
-    	console.log("got here");
 
     	where = "'pKey' IN (" + whereArray.join(',') + ")"; 
       	pointsLayer.setOptions({
