@@ -33,10 +33,12 @@ function array_intersect() {
   }
   return ret;
 }
+var myApiKey = 'AIzaSyC8Tw06vYAmuQHYg3Uw4dgVGta3DNhBO-w';
+var vinceApiKey = 'AIzaSyAp4nVJu4DyB0fEx07op_7C6yGh53JqMzw';
 
-var dataOstUrl = 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201cIEAw1VCm2rcYL5_FqOIHjhWer2WGN3SIVvaJxMm&key=AIzaSyC8Tw06vYAmuQHYg3Uw4dgVGta3DNhBO-w';
-var listArray = [[],[],[],[],[],[],[],[],[]];/*,[],[],[],[],[],[]];*/
-var filterArray = ['.gradesCheck', '.daysCheck', '.times_oCheck', '.enrollment_tCheck', '.wardsCheck', '.academic', '.ArtsAndCulture', '.Environment', '.SportsAndRecreation'];/*, '.Technology/MediaLiteracy', '.EarlyEducation', '.Jobs/CareerExploration', '.CommunityService/CivicEngagement', '.YouthDevelopment', '.CollegeReadiness', '.Health'];*/
+var dataOstUrl = 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201cIEAw1VCm2rcYL5_FqOIHjhWer2WGN3SIVvaJxMm&key=AIzaSyAp4nVJu4DyB0fEx07op_7C6yGh53JqMzw';
+var listArray = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+var filterArray = ['.gradesCheck', '.daysCheck', '.times_oCheck', '.enrollment_tCheck', '.wardsCheck', '.academic', '.ArtsAndCulture', '.Environment', '.SportsAndRecreation', '.TechnologyMediaLiteracy', '.EarlyEducation', '.JobsCareerExploration', '.CommunityServiceCivicEngagement', '.YouthDevelopment', '.CollegeReadiness', '.Health', '.FaithBasedSpirituality'];
 
 /**
 Column names and corresponding column numbers
@@ -66,6 +68,7 @@ Community Service/Civic Engagement = 98
 Youth Development = 99
 College Readiness = 100
 Health = 101
+Faith-Based/ Spirituality = 102
 */
 
 $("#progList").hide();
@@ -93,17 +96,17 @@ $("#progList").hide();
 
 				console.log(checkboxCat);
 
-					if (checkboxCat == '.gradesCheck') {
+					if (checkboxCat == filterArray[0]) {
 						var colNum = 29, listArrayNum = 0;
-					} else if (checkboxCat == '.daysCheck') {
+					} else if (checkboxCat == filterArray[1]) {
 						var colNum = 23, listArrayNum = 1;
-					} else if (checkboxCat == '.times_oCheck') {
+					} else if (checkboxCat == filterArray[2]) {
 						var colNum = 24, listArrayNum = 2;
-					} else if (checkboxCat == '.enrollment_tCheck') {
+					} else if (checkboxCat == filterArray[3]) {
 						var colNum = 31, listArrayNum = 3;
-					} else if (checkboxCat == '.wardsCheck') {
+					} else if (checkboxCat == filterArray[4]) {
 						var colNum = 2, listArrayNum = 4;
-					} else if (checkboxCat == '.academic') {
+					} else if (checkboxCat == filterArray[5]) {
 						var colNum = 91, listArrayNum = 5;
 					} else if (checkboxCat == filterArray[6]) {
 						var colNum = 92, listArrayNum = 6;
@@ -111,7 +114,7 @@ $("#progList").hide();
 						var colNum = 93, listArrayNum = 7;
 					} else if (checkboxCat == filterArray[8]) {
 						var colNum = 94, listArrayNum = 8;
-					}/* else if (checkboxCat == filterArray[9]) {
+					} else if (checkboxCat == filterArray[9]) {
 						var colNum = 95, listArrayNum = 9;
 					} else if (checkboxCat == filterArray[10]) {
 						var colNum = 96, listArrayNum = 10;
@@ -125,7 +128,9 @@ $("#progList").hide();
 						var colNum = 100, listArrayNum = 14;
 					} else if (checkboxCat == filterArray[15]) {
 						var colNum = 101, listArrayNum = 15;
-					}*/
+					} else if (checkboxCat == filterArray[16]) {
+						var colNum = 102, listArrayNum = 16;
+					}
 
 					var checkVal = [];
 
@@ -171,25 +176,25 @@ $("#progList").hide();
 					if (filterArray[i] != checkboxCat) {
 
 						var otherCheckboxCat = filterArray[i];
-						if (otherCheckboxCat == '.gradesCheck') {
+						if (otherCheckboxCat == filterArray[0]) {
 							var colNum = 29, listArrayNum = 0;
-						} else if (otherCheckboxCat == '.daysCheck') {
+						} else if (otherCheckboxCat == filterArray[1]) {
 							var colNum = 23, listArrayNum = 1;
-						} else if (otherCheckboxCat == '.times_oCheck') {
+						} else if (otherCheckboxCat == filterArray[2]) {
 							var colNum = 24, listArrayNum = 2;
-						} else if (otherCheckboxCat == '.enrollment_tCheck') {
+						} else if (otherCheckboxCat == filterArray[3]) {
 							var colNum = 31, listArrayNum = 3;
-						} else if (otherCheckboxCat == '.wardsCheck') {
+						} else if (otherCheckboxCat == filterArray[4]) {
 							var colNum = 2, listArrayNum = 4;
-						} else if (otherCheckboxCat == '.academic') {
+						} else if (otherCheckboxCat == filterArray[5]) {
 							var colNum = 91, listArrayNum = 5;
-						} else if (otherCheckboxCat == '.ArtsAndCulture') {
+						} else if (otherCheckboxCat == filterArray[6]) {
 							var colNum = 92, listArrayNum = 6;
 						} else if (otherCheckboxCat == filterArray[7]) {
 							var colNum = 93, listArrayNum = 7;
 						} else if (otherCheckboxCat == filterArray[8]) {
 							var colNum = 94, listArrayNum = 8;
-						}/* else if (otherCheckboxCat == filterArray[9]) {
+						} else if (otherCheckboxCat == filterArray[9]) {
 							var colNum = 95, listArrayNum = 9;
 						} else if (otherCheckboxCat == filterArray[10]) {
 							var colNum = 96, listArrayNum = 10;
@@ -203,7 +208,10 @@ $("#progList").hide();
 							var colNum = 100, listArrayNum = 14;
 						} else if (otherCheckboxCat == filterArray[15]) {
 							var colNum = 101, listArrayNum = 15;
-						}*/
+						} else if (otherCheckboxCat == filterArray[16]) {
+							var colNum = 102, listArrayNum = 16;
+						}
+
 						var checkVal = [];
 
 						if ($(otherCheckboxCat+':checked').length == 0) {
@@ -245,7 +253,7 @@ $("#progList").hide();
 					}
 				}
 				
-				var prog = array_intersect(listArray[0], listArray[1], listArray[2], listArray[3], listArray[4], listArray[5], listArray[6], listArray[7], listArray[8]);/*, listArray[9], listArray[10], listArray[11], listArray[12], listArray[13], listArray[14], listArray[15]);*/
+				var prog = array_intersect(listArray[0], listArray[1], listArray[2], listArray[3], listArray[4], listArray[5], listArray[6], listArray[7], listArray[8], listArray[9], listArray[10], listArray[11], listArray[12], listArray[13], listArray[14], listArray[15], listArray[16]);
 				console.log(prog.length);
 				
 				if (prog.length == 0) {
@@ -281,16 +289,15 @@ $("#progList").hide();
 			}
 		});
 
-		checkboxes(".gradesCheck");
-		checkboxes(".daysCheck");
-		checkboxes(".times_oCheck");
-		checkboxes(".enrollment_tCheck");
-		checkboxes(".wardsCheck");
-		checkboxes(".academic");
-		checkboxes(".ArtsAndCulture");
+		checkboxes(filterArray[0]);
+		checkboxes(filterArray[1]);
+		checkboxes(filterArray[2]);
+		checkboxes(filterArray[3]);
+		checkboxes(filterArray[4]);
+		checkboxes(filterArray[5]);
+		checkboxes(filterArray[6]);
 		checkboxes(filterArray[7]);
 		checkboxes(filterArray[8]);
-		/*
 		checkboxes(filterArray[9]);
 		checkboxes(filterArray[10]);
 		checkboxes(filterArray[11]);
@@ -298,7 +305,7 @@ $("#progList").hide();
 		checkboxes(filterArray[13]);
 		checkboxes(filterArray[14]);
 		checkboxes(filterArray[15]);
-		*/
+		checkboxes(filterArray[16]);
 
 	}).error(function(e){
 		$('#progList').text('Unable to load program list');
