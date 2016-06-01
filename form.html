@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+		<title>Program Locator</title>
 		<link rel="stylesheet" type="text/css" href="form.css">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -9,74 +10,75 @@
   		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     	<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3"></script>
-    	<script src="form.js"></script> 
+    	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    	<!--<script src="form.js"></script>-->
 </head>
 
 <body onload="init()">
 <div id="content">
 	<div id="header">
 		<h1>Newark Thrives! Youth Program Locator</h1>
+		<button id="toggleView">List View</button>
 	</div>
 	<div id="filters">
     	<h3>Filter Controls</h3>
-		<form>
 		  Program / Organization Search: 
-		  <input type="text" name="firstname">
-		  <input type="submit">
-		</form>
+		  <input type="text" id="searchQuery" value="">
+		  <button id="submit-btn">Submit</button>
 		<hr>
 
 	<div class="scrollable">
 		<h3>Grades Served</h3>
 		<div class="grades">
-			<input type="checkbox" class="grades" value="High School"/> High School (9-12) <br>
-			<input type="checkbox" class="grades" value="Middle School"/> Middle School (6-8)<br>
-			<input type="checkbox" class="grades" value="Elementary"/> Elementary (K-5) <br>
-			<input type="checkbox" class="grades" value="Kindergarten"/> Kindergarten <br>
-			<input type="checkbox" class="grades" value="Pre-K"/> Pre-K <br>
+			<input type="checkbox" class="gradesCheck" value="High School"/> High School (9-12) <br>
+			<input type="checkbox" class="gradesCheck" value="Middle School"/> Middle School (6-8)<br>
+			<input type="checkbox" class="gradesCheck" value="Elementary"/> Elementary (K-5) <br>
+			<input type="checkbox" class="gradesCheck" value="Kindergarten"/> Kindergarten <br>
+			<input type="checkbox" class="gradesCheck" value="Pre-K"/> Pre-K <br>
 			<hr>
 		</div>
 
 		<h3>Days Offered</h3>
 		<div class="days">
-				<input type="checkbox" class="days" value="Monday"/> Mon <br>
-				<input type="checkbox" class="days" value="Tuesday"/> Tues <br>
-				<input type="checkbox" class="days" value="Wednesday"/> Wed <br>
-				<input type="checkbox" class="days" value="Thursday"/> Thur <br>
-				<input type="checkbox" class="days" value="Friday"/> Fri <br>
-				<input type="checkbox" class="days" value="Saturday"/> Sat <br>
-				<input type="checkbox" class="days" value="Sunday"/> Sun <br>
+				<input type="checkbox" class="daysCheck" value="Monday"/> Mon <br>
+				<input type="checkbox" class="daysCheck" value="Tuesday"/> Tues <br>
+				<input type="checkbox" class="daysCheck" value="Wednesday"/> Wed <br>
+				<input type="checkbox" class="daysCheck" value="Thursday"/> Thur <br>
+				<input type="checkbox" class="daysCheck" value="Friday"/> Fri <br>
+				<input type="checkbox" class="daysCheck" value="Saturday"/> Sat <br>
+				<input type="checkbox" class="daysCheck" value="Sunday"/> Sun <br>
 				<hr>
 		</div>
 	  	
 		<h3>Times Offered</h3>	
 		<div class="times_O">	
-				<input type="checkbox" class="times_O" value="6:00-9:00 am"/> Morning <br>
-				<input type="checkbox" class="times_O" value="3:00-5:00 pm, 3:00-6:00 pm, 12:30-1:30" /> Afternoon <br>
-				<input type="checkbox" class="times_O" value="5:00-8:00 pm, 6:00-8:00 pm"/> Evening <br>
-				<input type="checkbox" class="times_o" value="Summer All Day, 9:00-5:00 am"/> Summer All Day <br>
-				<input type="checkbox" class="times_o" value="Summer Half Day"/> Summer Half Day <br>
-				<input type="checkbox" class="times_o" value="Overnight"/> Overnight <br>
+				<input type="checkbox" class="times_oCheck" value="6:00-9:00 am,Morning"/> Morning <br>
+				<input type="checkbox" class="times_oCheck" value="3:00-5:00 pm,3:00-6:00 pm,12:30-1:30,Afternoon" /> Afternoon <br>
+				<input type="checkbox" class="times_oCheck" value="5:00-8:00 pm,6:00-8:00 pm,Evening"/> Evening <br>
+				<input type="checkbox" class="times_oCheck" value="Summer All Day,9:00-5:00 am"/> Summer All Day <br>
+				<input type="checkbox" class="times_oCheck" value="Summer Half Day"/> Summer Half Day <br>
+				<input type="checkbox" class="times_oCheck" value="Overnight"/> Overnight <br>
 				<hr>
 		</div>
 		
 	    <h3>Enrollment Type</h3>
 	    <div class="enrollment_t">
-	    		<input type="checkbox" class="enrollment_t" value="Full Year"/> Full Year <br>
-				<input type="checkbox" class="enrollment_t" value="Summer"/> Summer <br>
-				<input type="checkbox" class="enrollment_t" value="Drop-in"/> Drop-in <br>
-	    		<input type="checkbox" class="enrollment_t" value="3 Session"/> 3 Session <br>
-				<input type="checkbox" class="enrollment_t" value="Semester"/> Semester <br>
+	    		<input type="checkbox" class="enrollment_tCheck" value="Full Year"/> Full Year <br>
+				<input type="checkbox" class="enrollment_tCheck" value="Summer"/> Summer <br>
+				<input type="checkbox" class="enrollment_tCheck" value="Drop-in"/> Drop-in <br>
+	    		<input type="checkbox" class="enrollment_tCheck" value="3 Session"/> 3 Session <br>
+				<input type="checkbox" class="enrollment_tCheck" value="Semester"/> Semester <br>
 				<hr>
 		</div>
 
 		<div class="wards">
 	    	<h3>Wards</h3>
-				<input type="checkbox" class="wards" value="Central"/> Central Ward<br>	
-				<input type="checkbox" class="wards" value="North"/> North Ward<br>
-				<input type="checkbox" class="wards" value="South"/> South Ward<br>
-				<input type="checkbox" class="wards" value="East"/> East Ward<br>
-				<input type="checkbox" class="wards" value="West"/> West Ward<br>
+				<input type="checkbox" class="wardsCheck" value="Central"/> Central Ward<br>
+				<input type="checkbox" class="wardsCheck" value="North"/> North Ward<br>
+				<input type="checkbox" class="wardsCheck" value="South"/> South Ward<br>
+				<input type="checkbox" class="wardsCheck" value="East"/> East Ward<br>
+				<input type="checkbox" class="wardsCheck" value="West"/> West Ward<br>
+				<input type="checkbox" class="wardsCheck" value="Other"/> Outside of Newark<br>
 				<hr>
 		</div>
 	
@@ -85,21 +87,21 @@
 				<div class="panel">
 				  <input type="checkbox" class="academic" value="Academic Clubs"/>Academic Clubs<br>
 				  <input type="checkbox" class="academic" value="Academic Enrichment"/>Academic Enrichment<br>
-				  <input type="checkbox" class="academic" value="College-Credit"/>College-Credit<br>
+				  <input type="checkbox" class="academic" value="College Credit"/>College-Credit<br>
 				  <input type="checkbox" class="academic" value="Credit Recovery"/>Credit Recovery<br>
 				  <input type="checkbox" class="academic" value="Dropout Prevention"/>Dropout Prevention<br>
 				  <input type="checkbox" class="academic" value="English Language Arts"/>English Language Arts<br>
 				  <input type="checkbox" class="academic" value="ESOL Instruction"/>ESOL Instruction<br>
-				  <input type="checkbox" class="academic" value="History/ Social Studies"/>History/ Social Studies<br>
+				  <input type="checkbox" class="academic" value="History/Social Studies"/>History/ Social Studies<br>
 				  <input type="checkbox" class="academic" value="Homework Help"/>Homework Help<br>
 				  <input type="checkbox" class="academic" value="Math"/>Math<br>
-				  <input type="checkbox" class="academic" value="Reading/ Literature"/>Reading/ Literature<br>
+				  <input type="checkbox" class="academic" value="Reading/Literature"/>Reading/ Literature<br>
 				  <input type="checkbox" class="academic" value="Re-Engagement"/>Re-Engagement<br>
 				  <input type="checkbox" class="academic" value="STEM"/>STEM<br>
 				  <input type="checkbox" class="academic" value="Study Skills"/>Study Skills<br>
-				  <input type="checkbox" class="academic" value="Test Prep: Acccuplacer"/>Test Prep: Acccuplacer<br>
+				  <input type="checkbox" class="academic" value="Test Prep: Accuplacer"/>Test Prep: Accuplacer<br>
 				  <input type="checkbox" class="academic" value="Test Prep: GED"/>Test Prep: GED<br>
-				  <input type="checkbox" class="academic" value="Test Prep: ICEE (Exam School Test)"/>Test Prep: ICEE (Exam School Test)<br>
+				  <input type="checkbox" class="academic" value="Test Prep: ICEE"/>Test Prep: ICEE (Exam School Test)<br>
 				  <input type="checkbox" class="academic" value="Test Prep: MCAS"/>Test Prep: MCAS<br>
 				  <input type="checkbox" class="academic" value="Test Prep: SAT"/>Test Prep: SAT<br>
 				  <input type="checkbox" class="academic" value="Tutoring"/>Tutoring<br>
@@ -108,65 +110,65 @@
 
 				<button class="accordion">Arts and Culture</button>
 				<div class="panel">
-				  <input type="checkbox" class="Arts and Culture" value="Architecture/ Planning"/>Architecture/ Planning<br>
-				  <input type="checkbox" class="Arts and Culture" value="Choreography"/>Choreography<br>
-				  <input type="checkbox" class="Arts and Culture" value="Comedy/Improvisation"/>Comedy/Improvisation<br>
-				  <input type="checkbox" class="Arts and Culture" value="Craft/folk Art"/>Craft/folk Art<br>
-				  <input type="checkbox" class="Arts and Culture" value="Creative Writing"/>Creative Writing<br>
-				  <input type="checkbox" class="Arts and Culture" value="Culinary Education"/>Culinary Education<br>
-				  <input type="checkbox" class="Arts and Culture" value="Dance"/>Dance<br>
-				  <input type="checkbox" class="Arts and Culture" value="Drawing"/>Drawing<br>
-				  <input type="checkbox" class="Arts and Culture" value="Fashion"/>Fashion<br>
-				  <input type="checkbox" class="Arts and Culture" value="Film/Video Production"/>Film/Video Production<br>
-				  <input type="checkbox" class="Arts and Culture" value="Glass Arts"/>Glass Arts<br>
-				  <input type="checkbox" class="Arts and Culture" value="Interpretive History"/>Interpretive History<br>
-				  <input type="checkbox" class="Arts and Culture" value="Literacy Arts"/>Literacy Arts<br>
-				  <input type="checkbox" class="Arts and Culture" value="Media Arts"/>Media Arts<br>
-				  <input type="checkbox" class="Arts and Culture" value="Music: Choral"/>Music: Choral<br>
-				  <input type="checkbox" class="Arts and Culture" value="Music: Instrumental"/>Music: Instrumental<br>
-				  <input type="checkbox" class="Arts and Culture" value="Painting"/>Painting<br>
-				  <input type="checkbox" class="Arts and Culture" value="Performing Arts"/>Performing Arts<br>
-				  <input type="checkbox" class="Arts and Culture" value="Photography"/>Photography<br>
-				  <input type="checkbox" class="Arts and Culture" value="Poetry/Spoken Word<"/>Poetry/Spoken Word<br>
-				  <input type="checkbox" class="Arts and Culture" value="Printmaking"/>Printmaking<br>
-				  <input type="checkbox" class="Arts and Culture" value="Puppetry"/>Puppetry<br>
-				  <input type="checkbox" class="Arts and Culture" value="Radio/Audio Production"/>Radio/Audio Production<br>
-				  <input type="checkbox" class="Arts and Culture" value="Sculpture"/>Sculpture<br>
-				  <input type="checkbox" class="Arts and Culture" value="Theater"/>Theater<br>
-				  <input type="checkbox" class="Arts and Culture" value="Visual Arts"/>Visual Arts<br>
-				  <input type="checkbox" class="Arts and Culture" value="Jazz"/>Jazz<br>
-				  <input type="checkbox" class="Arts and Culture" value="Vocal Music"/>Vocal Music<br>
-				  <input type="checkbox" class="Arts and Culture" value="STEAM"/>STEAM<br>
-				  <input type="checkbox" class="Arts and Culture" value="Modern Dance"/>Modern Dance<br>
-				  <input type="checkbox" class="Arts and Culture" value="Ballet"/>Ballet<br>
-				  <input type="checkbox" class="Arts and Culture" value="West African Dance<"/>West African Dance<br>
-				  <input type="checkbox" class="Arts and Culture" value="Ballroom Dance"/>Ballroom Dance<br>
-				  <input type="checkbox" class="Arts and Culture" value="Cultural/World Dance"/>Cultural/World Dance<br>
-				  <input type="checkbox" class="Arts and Culture" value="Liturgical Dance<"/>Liturgical Dance<br>
-				  <input type="checkbox" class="Arts and Culture" value="Tap Dance"/>Tap Dance<br>
-				  <input type="checkbox" class="Arts and Culture" value="Hip Hop"/>Hip Hop<br>
-				  <input type="checkbox" class="Arts and Culture" value="Drumming"/>Drumming<br>
-				  <input type="checkbox" class="Arts and Culture" value="Acting"/>Acting<br>
-				  <input type="checkbox" class="Arts and Culture" value="Musical Theatre"/>Musical Theatre<br>
-				  <input type="checkbox" class="Arts and Culture" value="Storytelling<"/>Storytelling<br>
-				  <input type="checkbox" class="Arts and Culture" value="Music Production"/>Music Production<br>
-				  <input type="checkbox" class="Arts and Culture" value="Mural"/>Mural<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Architecture/ Planning"/>Architecture/ Planning<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Choreography"/>Choreography<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Comedy/Improvisation"/>Comedy/Improvisation<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Craft/folk Art"/>Craft/folk Art<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Creative Writing"/>Creative Writing<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Culinary Education"/>Culinary Education<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Dance"/>Dance<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Drawing"/>Drawing<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Fashion"/>Fashion<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Film/Video Production"/>Film/Video Production<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Glass Arts"/>Glass Arts<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Interpretive History"/>Interpretive History<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Literacy Arts"/>Literacy Arts<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Media Arts"/>Media Arts<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Music: Choral"/>Music: Choral<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Music: Instrumental"/>Music: Instrumental<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Painting"/>Painting<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Performing Arts"/>Performing Arts<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Photography"/>Photography<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Poetry/Spoken Word"/>Poetry/Spoken Word<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Printmaking"/>Printmaking<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Puppetry"/>Puppetry<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Radio/Audio Production"/>Radio/Audio Production<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Sculpture"/>Sculpture<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Theater"/>Theater<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Visual Arts"/>Visual Arts<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Jazz"/>Jazz<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Vocal Music"/>Vocal Music<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="STEAM"/>STEAM<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Modern Dance"/>Modern Dance<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Ballet"/>Ballet<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="West African Dance"/>West African Dance<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Ballroom Dance"/>Ballroom Dance<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Cultural/World Dance"/>Cultural/World Dance<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Liturgical Dance"/>Liturgical Dance<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Tap Dance"/>Tap Dance<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Hip Hop"/>Hip Hop<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Drumming"/>Drumming<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Acting"/>Acting<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Musical Theatre"/>Musical Theatre<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Storytelling"/>Storytelling<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Music Production"/>Music Production<br>
+				  <input type="checkbox" class="ArtsAndCulture" value="Mural"/>Mural<br>
 				</div>
 
 				<button class="accordion">Environment</button>
 				<div class="panel">
-				  <input type="checkbox" class="Environment" value="Agriculture/ Farming"/>Agriculture/ Farming<br>
+				  <input type="checkbox" class="Environment" value="Agriculture/Farming"/>Agriculture/ Farming<br>
 				  <input type="checkbox" class="Environment" value="Air quality"/>Air quality<br>
 				  <input type="checkbox" class="Environment" value="Biodiversity"/>Biodiversity<br>
 				  <input type="checkbox" class="Environment" value="Climate Change"/>Climate Change<br>
 				  <input type="checkbox" class="Environment" value="Ecosystems"/>Ecosystems<br>
 				  <input type="checkbox" class="Environment" value="Energy"/>Energy<br>
 				  <input type="checkbox" class="Environment" value="Environmental Health"/>Environmental Health<br>
-				  <input type="checkbox" class="Environment" value="Environmental Justice<"/>Environmental Justice<br>
+				  <input type="checkbox" class="Environment" value="Environmental Justice"/>Environmental Justice<br>
 				  <input type="checkbox" class="Environment" value="Environmental Science"/>Environmental Science<br>
-				  <input type="checkbox" class="Environment" value="Forestry (urban focus)"/>Forestry (urban focus)<br>
+				  <input type="checkbox" class="Environment" value="Forestry"/>Forestry (urban focus)<br>
 				  <input type="checkbox" class="Environment" value="Horticulture/Gardening"/>Horticulture/Gardening<br>
-				  <input type="checkbox" class="Environment" value=">Natural Resources/Resource Management"/>Natural Resources/Resource Management<br>
+				  <input type="checkbox" class="Environment" value="Natural Resources/ Resource Management"/>Natural Resources/Resource Management<br>
 				  <input type="checkbox" class="Environment" value="Nature/Wildlife"/>Nature/Wildlife<br>
 				  <input type="checkbox" class="Environment" value="Pollution prevention"/>Pollution prevention<br>
 				  <input type="checkbox" class="Environment" value="Recycling/waste management"/>Recycling/waste management<br>
@@ -180,111 +182,111 @@
 
 				<button class="accordion">Sports and Recreation</button>
 				<div class="panel">
-				  <input type="checkbox" class="Sports and Recreation" value="Aerobics"/>Aerobics<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Baseball"/>Baseball<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Basketball"/>Basketball<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Boxing"/>Boxing<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Cheerleading"/>Cheerleading<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Crew/Rowing"/>Crew/Rowing<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Cycling"/>Cycling<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Dance/Gymnastics"/>Dance/Gymnastics<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Dodgeball"/>Dodgeball<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Double Dutch/ Jump Rope"/>Double Dutch/ Jump Rope<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Football"/>Football<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Golf"/>Golf<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Hockey/Skating"/>Hockey/Skating<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Kayaking"/>Kayaking<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Kickboxing"/>Kickboxing<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Lacrosse"/>Lacrosse<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Martial Arts"/>Martial Arts<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Open Gym"/>Open Gym<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Outdoor Adventure"/>Outdoor Adventure<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Rock Climbing"/>Rock Climbing<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Ropes Course"/>Ropes Course<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Rugby"/>Rugby<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Running/Cross Country"/>Running/Cross Country<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Sailing"/>Sailing<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Skiing/Snowboarding<"/>Skiing/Snowboarding<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Soccer"/>Soccer<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Softball"/>Softball<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Strength/Conditioning"/>Strength/Conditioning<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Swimming"/>Swimming<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Tball"/>Tball<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Tennis/Squash"/>Tennis/Squash<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Track and Field"/>Track and Field<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Unspecified Sport"/>Unspecified Sport<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Volleyball"/>Volleyball<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Yoga/Pilates"/>Yoga/Pilates<br>
-				  <input type="checkbox" class="Sports and Recreation" value="Wrestling"/>Wrestling<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Aerobics"/>Aerobics<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Baseball"/>Baseball<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Basketball"/>Basketball<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Boxing"/>Boxing<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Cheerleading"/>Cheerleading<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Crew/Rowing"/>Crew/Rowing<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Cycling"/>Cycling<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Dance/Gymnastics"/>Dance/Gymnastics<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Dodgeball"/>Dodgeball<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Double Dutch/ Jump Rope"/>Double Dutch/ Jump Rope<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Football"/>Football<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Golf"/>Golf<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Hockey/ Skating"/>Hockey/Skating<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Kayaking"/>Kayaking<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Kickboxing"/>Kickboxing<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Lacrosse"/>Lacrosse<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Martial Arts"/>Martial Arts<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Open Gym"/>Open Gym<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Outdoor Adventure"/>Outdoor Adventure<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Rock Climbing"/>Rock Climbing<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Ropes Course"/>Ropes Course<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Rugby"/>Rugby<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Running/ Cross Country"/>Running/Cross Country<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Sailing"/>Sailing<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Skiing/Snowboarding"/>Skiing/Snowboarding<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Soccer"/>Soccer<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Softball"/>Softball<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Strength/Conditioning"/>Strength/Conditioning<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Swimming"/>Swimming<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Tball"/>Tball<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Tennis/Squash"/>Tennis/Squash<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Track and Field"/>Track and Field<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Unspecified Sport"/>Unspecified Sport<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Volleyball"/>Volleyball<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Yoga/Pilates"/>Yoga/Pilates<br>
+				  <input type="checkbox" class="SportsAndRecreation" value="Wrestling"/>Wrestling<br>
 				</div>
 
 				<button class="accordion">Technology/ Media Literacy</button>
 				<div class="panel">
-				  <input type="checkbox" class="Technology/ Media Literacy" value="Computer Literacy"/>Computer Literacy<br>
-				  <input type="checkbox" class="Technology/ Media Literacy" value="Computer Programming"/>Computer Programming<br>
-				  <input type="checkbox" class="Technology/ Media Literacy" value="Graphic Design"/>Graphic Design<br>
-				  <input type="checkbox" class="Technology/ Media Literacy" value="Media Literacy"/>Media Literacy<br>
-				  <input type="checkbox" class="Technology/ Media Literacy" value="Technology"/>Technology<br>
-				  <input type="checkbox" class="Technology/ Media Literacy" value="Video Game Design"/>Video Game Design<br>
-				  <input type="checkbox" class="Technology/ Media Literacy" value="Web Design"/>Web Design<br>
+				  <input type="checkbox" class="TechnologyMediaLiteracy" value="Computer Literacy"/>Computer Literacy<br>
+				  <input type="checkbox" class="TechnologyMediaLiteracy" value="Computer Programming"/>Computer Programming<br>
+				  <input type="checkbox" class="TechnologyMediaLiteracy" value="Graphic Design"/>Graphic Design<br>
+				  <input type="checkbox" class="TechnologyMediaLiteracy" value="Media Literacy"/>Media Literacy<br>
+				  <input type="checkbox" class="TechnologyMediaLiteracy" value="Technology"/>Technology<br>
+				  <input type="checkbox" class="TechnologyMediaLiteracy" value="Video Game Design"/>Video Game Design<br>
+				  <input type="checkbox" class="TechnologyMediaLiteracy" value="Web Design"/>Web Design<br>
 				</div>
 
 				<button class="accordion">Early Education</button>
 				<div class="panel">
-				  <input type="checkbox" class="Early Education" value="Early Literacy and Reading"/>Early Literacy and Reading<br>
-				  <input type="checkbox" class="Early Education" value="Parent Child Enrichment"/>Parent Child Enrichment<br>
-				  <input type="checkbox" class="Early Education" value="Play groups"/>Play groups<br>
-				  <input type="checkbox" class="Early Education" value="Play-based learning"/>Play-based learning<br>
-				  <input type="checkbox" class="Early Education" value="School Aged Child care"/>School Aged Child care<br>
-				  <input type="checkbox" class="Early Education" value="Story Time"/>Story Time<br>
+				  <input type="checkbox" class="EarlyEducation" value="Early Literacy and Reading"/>Early Literacy and Reading<br>
+				  <input type="checkbox" class="EarlyEducation" value="Parent Child Enrichment"/>Parent Child Enrichment<br>
+				  <input type="checkbox" class="EarlyEducation" value="Play groups"/>Play groups<br>
+				  <input type="checkbox" class="EarlyEducation" value="Play-based learning"/>Play-based learning<br>
+				  <input type="checkbox" class="EarlyEducation" value="School Aged Child care"/>School Aged Child care<br>
+				  <input type="checkbox" class="EarlyEducation" value="Story Time"/>Story Time<br>
 
 				</div>
 
 				<button class="accordion">Jobs/Career Exploration</button>
 				<div class="panel">
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Career Development"/>Career Development<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Employment Exploration"/>Employment Exploration<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Entrepreneurship"/>Entrepreneurship<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Job Shadowing"/>Job Shadowing<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Job Skills"/>Job Skills<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Paid employment"/>Paid employment<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Resume building"/>Resume building<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Unpaid Internship"/>Unpaid Internship<br>
-				  <input type="checkbox" class="Jobs/Career Exploration" value="Volunteer Oportunity"/>Volunteer Oportunity<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Career Development"/>Career Development<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Employment Exploration"/>Employment Exploration<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Entrepreneurship"/>Entrepreneurship<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Job Shadowing"/>Job Shadowing<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Job Skills"/>Job Skills<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Paid employment"/>Paid employment<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Resume building"/>Resume building<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Unpaid Internship"/>Unpaid Internship<br>
+				  <input type="checkbox" class="JobsCareerExploration" value="Volunteer Opportunity"/>Volunteer Opportunity<br>
 				</div>
 
 				<button class="accordion">Community Service/ Civic Engagement</button>
 				<div class="panel">
-				  <input type="checkbox" class="Community Service/ Civic Engagement" value="Civic engagement"/>Civic engagement<br>
-				  <input type="checkbox" class="Community Service/ Civic Engagement" value="Community service"/>Community service<br>
-				  <input type="checkbox" class="Community Service/ Civic Engagement" value="Philantrhopy"/>Philantrhopy<br>
-				  <input type="checkbox" class="Community Service/ Civic Engagement" value="Service Learning"/>Service Learning<br>
-				  <input type="checkbox" class="Community Service/ Civic Engagement" value="Social justice"/>Social justice<br>
-				  <input type="checkbox" class="Community Service/ Civic Engagement" value="Youth organizing"/>Youth organizing<br>
+				  <input type="checkbox" class="CommunityServiceCivicEngagement" value="Civic engagement"/>Civic engagement<br>
+				  <input type="checkbox" class="CommunityServiceCivicEngagement" value="Community service"/>Community service<br>
+				  <input type="checkbox" class="CommunityServiceCivicEngagement" value="Philanthropy"/>Philanthropy<br>
+				  <input type="checkbox" class="CommunityServiceCivicEngagement" value="Service Learning"/>Service Learning<br>
+				  <input type="checkbox" class="CommunityServiceCivicEngagement" value="Social justice"/>Social justice<br>
+				  <input type="checkbox" class="CommunityServiceCivicEngagement" value="Youth organizing"/>Youth organizing<br>
 				</div>
 
 				<button class="accordion">Youth Development</button>
 				<div class="panel">
-				  <input type="checkbox" class="Youth Development" value="Alumni Services"/>Alumni Services<br>
-				  <input type="checkbox" class="Youth Development" value="Communication Skills"/>Communication Skills<br>
-				  <input type="checkbox" class="Youth Development" value="Conflict Resolution"/>Conflict Resolution<br>
-				  <input type="checkbox" class="Youth Development" value="Field Trips"/>Field Trips<br>
-				  <input type="checkbox" class="Youth Development" value="Leadership Development"/>Leadership Development<br>
-				  <input type="checkbox" class="Youth Development" value="Life-Skills"/>Life-Skills<br>
-				  <input type="checkbox" class="Youth Development" value="Mentoring"/>Mentoring<br>
-				  <input type="checkbox" class="Youth Development" value="Problem-Solving"/>Problem-Solving<br>
-				  <input type="checkbox" class="Youth Development" value="21st Century Skills"/>21st Century Skills<br>
-				  <input type="checkbox" class="Youth Development" value="Self-Esteem"/>Self-Esteem<br>
-				  <input type="checkbox" class="Youth Development" value="Social Skills"/>Social Skills<br>
-				  <input type="checkbox" class="Youth Development" value="Team Building"/>Team Building<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Alumni Services"/>Alumni Services<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Communication Skills"/>Communication Skills<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Conflict Resolution"/>Conflict Resolution<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Field Trips"/>Field Trips<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Leadership Development"/>Leadership Development<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Life-Skills"/>Life-Skills<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Mentoring"/>Mentoring<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Problem-Solving"/>Problem-Solving<br>
+				  <input type="checkbox" class="YouthDevelopment" value="21st Century Skills"/>21st Century Skills<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Self-Esteem"/>Self-Esteem<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Social Skills"/>Social Skills<br>
+				  <input type="checkbox" class="YouthDevelopment" value="Team Building"/>Team Building<br>
 				</div>
 
 				<button class="accordion">College Readiness</button>
 				<div class="panel">
-				  <input type="checkbox" class="College Readiness" value="College Counseling"/>College Counseling<br>
-				  <input type="checkbox" class="College Readiness" value="College Prep"/>College Prep<br>
-				  <input type="checkbox" class="College Readiness" value="College Readiness"/>College Readiness<br>
-				  <input type="checkbox" class="College Readiness" value="Financial Counseling"/>Financial Counseling<br>
+				  <input type="checkbox" class="CollegeReadiness" value="College Counseling"/>College Counseling<br>
+				  <input type="checkbox" class="CollegeReadiness" value="College Prep"/>College Prep<br>
+				  <input type="checkbox" class="CollegeReadiness" value="College Readiness"/>College Readiness<br>
+				  <input type="checkbox" class="CollegeReadiness" value="Financial Counseling"/>Financial Counseling<br>
 				</div>
 
 				<button class="accordion">Health</button>
@@ -311,11 +313,12 @@
 
 				<button class="accordion">Faith-Based/ Spirituality</button>
 				<div class="panel">
-				  <input type="checkbox" class="Faith-Based/ Spirituality" value="Faith-Based/ Spirituality"/>Faith-Based/ Spirituality<br>
+				  <input type="checkbox" class="FaithBasedSpirituality" value="Faith-Based/ Spirituality"/>Faith-Based/ Spirituality<br>
 				</div>
 	</div>
 	</div>
 	<div id="mapCanvas"></div>
+	<div id="progList"></div>
 	<div id="directionsPanel"></div>
 	<div id="reset_div">
     	<button id="reset_button">Reset Map</button>
@@ -372,5 +375,6 @@
          </div>
     </footer>
   -->
+<script src="progList.js"></script>
 </body>
 </html>
