@@ -296,7 +296,7 @@ $("#progList").hide();
 					column = column.toString();
 					var test = column.search(regexp);
 					if (test != -1) {
-						progArr.push(prog[0]);
+						progArr.push(j);
 					}
 				});
 				
@@ -305,11 +305,17 @@ $("#progList").hide();
 
 			var uniqueArray = Array.from(new Set(progArr));
 				
-				uniqueArray.forEach(function(progArray){
-					$("#progList").append('<hr style="height:1px;border:none;color:#772950;background-color:#772950;" />'+'<ul class="programs">'+columns[8]+': '+progArray[8]+'<br>'+columns[9]+': '+'<a href="'+progArray[9]+'">'+progArray[9]+'</a>'+'<br>'+columns[11]+': '+progArray[11]+'<br>'+columns[7]+': '+progArray[7]+'<br>'+columns[21]+': '+progArray[21]+'<br>'+columns[4]+': '+progArray[4]+'<br>'+columns[30]+': '+progArray[30]+'<br>'+columns[32]+': '+progArray[32]+'<br>'+columns[22]+': '+progArray[22]+'<br>'+columns[23]+': '+progArray[23]+'<br>'+columns[24]+': '+progArray[24]+'<br>'+columns[25]+': '+progArray[25]+'<br>'+columns[28]+': '+progArray[28]+'</ul>');
-				});
+			if (uniqueArray.length == 0) {
+				$("#progList").append('<h3>Filter choices are too specific and did not result in any programs. Please try a broader search.</h3>');
+			}
 
-				filterMap(pointsLayer, tableId, locationColumn, uniqueArray);
+			var whereArray =[];
+			uniqueArray.forEach(function(progArray){
+				whereArray.push(rows[progArray][0]);
+				$("#progList").append('<hr style="height:1px;border:none;color:#772950;background-color:#772950;" />'+'<ul class="programs">'+columns[8]+': '+rows[progArray][8]+'<br>'+columns[9]+': '+'<a href="'+rows[progArray][9]+'">'+rows[progArray][9]+'</a>'+'<br>'+columns[11]+': '+rows[progArray][11]+'<br>'+columns[7]+': '+rows[progArray][7]+'<br>'+columns[21]+': '+rows[progArray][21]+'<br>'+columns[4]+': '+rows[progArray][4]+'<br>'+columns[30]+': '+rows[progArray][30]+'<br>'+columns[32]+': '+rows[progArray][32]+'<br>'+columns[22]+': '+rows[progArray][22]+'<br>'+columns[23]+': '+rows[progArray][23]+'<br>'+columns[24]+': '+rows[progArray][24]+'<br>'+columns[25]+': '+rows[progArray][25]+'<br>'+columns[28]+': '+rows[progArray][28]+'</ul>');
+			});
+
+			filterMap(pointsLayer, tableId, locationColumn, whereArray);
 			
 		});
 
